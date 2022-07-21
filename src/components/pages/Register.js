@@ -12,6 +12,7 @@ import {
   Typography,
   Checkbox,
   Button,
+  Alert,
 } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,8 +58,6 @@ export default function Register() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(auth.error);
-
   const from = location?.state?.from?.pathname || '/';
 
   useEffect(() => {
@@ -89,6 +88,7 @@ export default function Register() {
           }}
           onSubmit={handleRegister}
         >
+          {auth.error && <Alert severity="error">{auth.error}</Alert>}
           <Typography variant="h4" align="center" gutterBottom component="h3">
             Create Account
           </Typography>

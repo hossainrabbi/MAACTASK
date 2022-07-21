@@ -14,6 +14,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
+import { authAction } from '../store/auth-slice';
 
 const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -30,6 +31,12 @@ export default function GeoNavbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    handleCloseUserMenu();
+    localStorage.removeItem('authToken');
+    authAction.logoutUser();
   };
 
   return (
@@ -63,7 +70,10 @@ export default function GeoNavbar() {
                 alignItems="center"
                 display="flex"
               >
-                <span>Avatar</span> <ExpandMoreIcon />
+                <span>
+                  {JSON.parse(localStorage.getItem('authToken'))?.user?.name}
+                </span>
+                <ExpandMoreIcon />
               </Typography>
             </IconButton>
             <Menu
@@ -83,9 +93,17 @@ export default function GeoNavbar() {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Dashboard</Typography>
+                <Typography
+                  textAlign="center"
+                  variant="p"
+                  component={Link}
+                  to="/geo"
+                  style={{ textDecoration: 'none', color: '#444' }}
+                >
+                  Dashboard
+                </Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>

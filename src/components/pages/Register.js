@@ -88,7 +88,11 @@ export default function Register() {
           }}
           onSubmit={handleRegister}
         >
-          {auth.error && <Alert severity="error">{auth.error}</Alert>}
+          {auth.error && (
+            <Alert severity="error" style={{ marginBottom: '10px' }}>
+              {auth.error}
+            </Alert>
+          )}
           <Typography variant="h4" align="center" gutterBottom component="h3">
             Create Account
           </Typography>
@@ -222,8 +226,9 @@ export default function Register() {
             style={{ width: '100%', marginTop: '15px', padding: '20px 10px' }}
             variant="contained"
             type="submit"
+            disabled={auth.loading}
           >
-            Create Account
+            {auth.loading ? 'Loading...' : 'Create Account'}
           </Button>
           <Typography
             variant="subtitle1"

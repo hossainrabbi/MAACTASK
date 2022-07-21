@@ -17,6 +17,7 @@ import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { authAction } from '../store/auth-slice';
+import { useSelector } from 'react-redux';
 
 const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -26,6 +27,7 @@ const NavBar = styled(Toolbar)(() => ({
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const auth = useSelector((store) => store.auth);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -37,8 +39,8 @@ export default function Navbar() {
 
   const handleLogout = () => {
     handleCloseUserMenu();
-    authAction.logoutUser();
     localStorage.removeItem('authToken');
+    authAction.logoutUser();
   };
 
   return (
@@ -63,7 +65,8 @@ export default function Navbar() {
                 src={Logo}
               />
             </Box>
-            {JSON.parse(localStorage.getItem('authToken'))?.user?.name ? (
+            {JSON.parse(localStorage.getItem('authToken'))?.user?.name &&
+            !auth.isLogout ? (
               <Box sx={{ flexGrow: 0 }} disableGutters>
                 <IconButton onClick={handleOpenUserMenu} disableRipple>
                   <Avatar alt="Avatar" src={AvatarImage} />
@@ -79,7 +82,7 @@ export default function Navbar() {
                         JSON.parse(localStorage.getItem('authToken'))?.user
                           ?.name
                       }
-                    </span>{' '}
+                    </span>
                     <ExpandMoreIcon />
                   </Typography>
                 </IconButton>
@@ -100,7 +103,15 @@ export default function Navbar() {
                   onClose={handleCloseUserMenu}
                 >
                   <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">Dashboard</Typography>
+                    <Typography
+                      textAlign="center"
+                      variant="p"
+                      component={Link}
+                      to="/geo"
+                      style={{ textDecoration: 'none', color: '#444' }}
+                    >
+                      Dashboard
+                    </Typography>
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
                     <Typography textAlign="center">Logout</Typography>

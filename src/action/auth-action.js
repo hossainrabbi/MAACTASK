@@ -32,3 +32,35 @@ export const registerUser = (registerData) => async (dispatch) => {
     );
   }
 };
+
+export const loginUser = (loginData) => async (dispatch) => {
+  try {
+    dispatch(
+      authAction.loginUser({
+        loading: true,
+      })
+    );
+
+    const { data } = await axios.post(
+      'https://staging-api.erpxbd.com/api/v1/users/login',
+      loginData
+    );
+
+    localStorage.setItem('authToken', JSON.stringify(data));
+    dispatch(
+      authAction.loginUser({
+        error: '',
+        loading: false,
+        isSubmit: true,
+      })
+    );
+  } catch (err) {
+    localStorage.removeItem('authToken');
+    dispatch(
+      authAction.loginUser({
+        error: err.response.data.message,
+        loading: false,
+      })
+    );
+  }
+};

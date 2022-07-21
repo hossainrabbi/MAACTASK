@@ -7,8 +7,11 @@ import Login from './components/pages/Login';
 import GeoInformationLayout from './components/GeoInformationLayout';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import { useSelector } from 'react-redux';
 
 export default function App() {
+  const auth = useSelector((store) => store.auth);
+  console.log(auth);
   return (
     <BrowserRouter>
       <Routes>

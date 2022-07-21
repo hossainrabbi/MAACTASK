@@ -38,7 +38,7 @@ const InputSelect = styled(Select)(() => ({
 
 export default function Register() {
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Box
         sx={{
           width: '100%',

@@ -23,7 +23,7 @@ const InputTextField = styled(TextField)(() => ({
 
 export default function Login() {
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Box
         sx={{
           width: '100%',

@@ -4,6 +4,7 @@ import PublicLayout from './components/PublicLayout';
 import CssBaseline from '@mui/material/CssBaseline';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
+import GeoInformationLayout from './components/GeoInformationLayout';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
         </Route>
+        <Route path="/geo" element={<GeoInformationLayout />}></Route>
       </Routes>
       <CssBaseline />
     </BrowserRouter>

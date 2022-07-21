@@ -17,16 +17,25 @@ export default function Navbar() {
   return (
     <Box>
       <AppBar position="static" color="transparent">
-        <Container>
+        <Container maxWidth="xl">
           <NavBar>
             <Box
-              component="img"
+              component={Link}
+              to="/"
               sx={{
-                height: 60,
+                display: 'flex',
+                alignItems: 'center',
               }}
-              alt="FieldX Logo"
-              src={Logo}
-            />
+            >
+              <Box
+                component="img"
+                sx={{
+                  height: 60,
+                }}
+                alt="FieldX Logo"
+                src={Logo}
+              />
+            </Box>
             <div>
               <Button component={Link} to="/login" variant="contained">
                 Login

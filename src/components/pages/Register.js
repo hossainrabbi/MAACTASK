@@ -13,6 +13,11 @@ import {
   Checkbox,
   Button,
 } from '@mui/material';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../../action/auth-action';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const InputTextField = styled(TextField)(() => ({
   backgroundColor: 'transparent !important',
@@ -37,6 +42,36 @@ const InputSelect = styled(Select)(() => ({
 }));
 
 export default function Register() {
+  const [registerData, setRegisterData] = useState({
+    name: '',
+    email: '',
+    employeeId: '',
+    phoneNumber: '',
+    password: '',
+    passwordConfirm: '',
+    role: '',
+    agree: false,
+  });
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.auth);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  console.log(auth.error);
+
+  const from = location?.state?.from?.pathname || '/';
+
+  useEffect(() => {
+    if (auth?.isSubmit) {
+      navigate(from, { replace: true });
+    }
+  }, [auth?.isSubmit, from, navigate]);
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    dispatch(registerUser(registerData));
+  };
+
   return (
     <Container maxWidth="xl">
       <Box
@@ -52,6 +87,7 @@ export default function Register() {
             padding: '50px',
             backgroundColor: '#fff',
           }}
+          onSubmit={handleRegister}
         >
           <Typography variant="h4" align="center" gutterBottom component="h3">
             Create Account
@@ -69,53 +105,118 @@ export default function Register() {
             label="Enter Your Full Name"
             type="text"
             variant="filled"
+            required
+            value={registerData.name}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                name: e.target.value,
+              })
+            }
           />
           <InputTextField
             id="email"
             label="Enter Your Email"
             type="email"
             variant="filled"
+            required
+            value={registerData.email}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                email: e.target.value,
+              })
+            }
           />
           <InputTextField
-            id="userId"
+            id="employeeId"
             label="Your ID"
             type="text"
             variant="filled"
+            required
+            value={registerData.employeeId}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                employeeId: e.target.value,
+              })
+            }
           />
           <InputTextField
-            id="mobileNum"
+            id="phoneNumber"
             label="Your Mobile Number"
             type="text"
             variant="filled"
+            required
+            value={registerData.phoneNumber}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                phoneNumber: e.target.value,
+              })
+            }
           />
           <InputTextField
             id="password"
             label="Password"
             type="password"
             variant="filled"
+            required
+            value={registerData.password}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                password: e.target.value,
+              })
+            }
           />
           <InputTextField
-            id="confirmPassword"
+            id="passwordConfirm"
             label="Confirm Password"
             type="password"
             variant="filled"
+            required
+            value={registerData.passwordConfirm}
+            onChange={(e) =>
+              setRegisterData({
+                ...registerData,
+                passwordConfirm: e.target.value,
+              })
+            }
           />
           <FormControl
             variant="filled"
             style={{ width: '100%', marginBottom: '20px' }}
+            required
           >
             <InputLabel id="roleLabel">Select Your Role</InputLabel>
             <InputSelect
               labelId="roleLabel"
               id="role"
-              value="HUB"
               label="Select Your Role"
+              value={registerData.role}
+              onChange={(e) =>
+                setRegisterData({
+                  ...registerData,
+                  role: e.target.value,
+                })
+              }
             >
               <MenuItem value={'HUB'}>HUB</MenuItem>
             </InputSelect>
           </FormControl>
           <Typography variant="subtitle1" gutterBottom component="label">
-            <Checkbox /> I read and agree to the Terms &amp; Conditions
+            <Checkbox
+              required
+              checked={registerData.agree}
+              onChange={(e) =>
+                setRegisterData({
+                  ...registerData,
+                  agree: e.target.checked,
+                })
+              }
+            />{' '}
+            I read and agree to the Terms &amp; Conditions
           </Typography>
           <Button
             style={{ width: '100%', marginTop: '15px', padding: '20px 10px' }}

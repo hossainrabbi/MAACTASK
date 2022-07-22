@@ -1,7 +1,7 @@
 import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
 import { productionFeatures } from '../../../data';
-import ProductionImage from '../../../images/production.svg';
+import ProductionImage from '../../../images/production.png';
 import ProductionIcon from '../../../images/productionIcon.svg';
 import { ProductionFeaturesContainer } from '../../styles';
 import Title from './Title';

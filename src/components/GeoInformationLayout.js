@@ -9,6 +9,13 @@ import { sidebarData } from '../data';
 
 export default function GeoInformationLayout() {
   const [open, setOpen] = useState(true);
+  const [onCreateRegion, setOnCreateRegion] = useState(false);
+
+  const handleSidebarItem = (itemLink) => {
+    if (itemLink === '/geo/region-list') {
+      setOnCreateRegion(false);
+    }
+  };
 
   return (
     <main>
@@ -43,6 +50,7 @@ export default function GeoInformationLayout() {
                   marginBottom: '5px',
                 }}
                 key={item.name}
+                onClick={() => handleSidebarItem(item.link)}
               >
                 <Box
                   component={item.icon ? 'img' : 'span'}
@@ -63,10 +71,10 @@ export default function GeoInformationLayout() {
           style={{
             width: '100%',
             padding: '20px 25px',
-            backgroundColor: '#dddddd',
+            backgroundColor: '#F5F5F5',
           }}
         >
-          <Outlet />
+          <Outlet context={{ onCreateRegion, setOnCreateRegion }} />
         </Box>
       </Box>
     </main>

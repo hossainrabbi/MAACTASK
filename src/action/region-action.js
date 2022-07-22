@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { regionAction } from '../store/region-slice';
+
 const config = {
   headers: {
     Authorization: `Bearer ${
@@ -22,7 +23,7 @@ export const createRegion = (regionData) => async (dispatch) => {
       config
     );
 
-    console.log(data);
+    // console.log(data);
 
     dispatch(
       regionAction.createRegion({
@@ -31,10 +32,41 @@ export const createRegion = (regionData) => async (dispatch) => {
       })
     );
   } catch (err) {
-    console.log(err.response.data.message);
     dispatch(
       regionAction.createRegion({
-        error: err.response.data.message,
+        error: err?.response?.data?.message || err.message,
+        loading: false,
+      })
+    );
+  }
+};
+
+export const findRegions = (showCount) => async (dispatch) => {
+  try {
+    dispatch(
+      regionAction.findRegion({
+        loading: true,
+        region: [],
+      })
+    );
+
+    const { data } = await axios.get(
+      `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1`,
+      config
+    );
+
+    dispatch(
+      regionAction.findRegion({
+        region: data.region,
+        error: '',
+        loading: false,
+      })
+    );
+  } catch (err) {
+    dispatch(
+      regionAction.findRegion({
+        region: [],
+        error: err?.response?.data?.message || err.message,
         loading: false,
       })
     );

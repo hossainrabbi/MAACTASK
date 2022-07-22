@@ -1,17 +1,38 @@
-import { Box, TextField } from '@mui/material';
+import {
+  Box,
+  Checkbox,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+} from '@mui/material';
 import React from 'react';
 import { CustomButton, RegionContainer, RegionInputField } from '../../styles';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import AddIcon from '@mui/icons-material/Add';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
-import { createRegion } from '../../../action/region-action';
-import { useDispatch } from 'react-redux';
+import { createRegion, findRegions } from '../../../action/region-action';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import CreateTitle from './CreateTitle';
 
 export default function RegionList() {
   const { onCreateRegion, setOnCreateRegion } = useOutletContext();
   const [regionInput, setRegionInput] = useState('');
+  const [showCount, setShowCount] = useState(10);
+  const region = useSelector((store) => store.region);
   const dispatch = useDispatch();
+  const [selected, setSelected] = useState([]);
+
+  console.log(selected);
+
+  useEffect(() => {
+    dispatch(findRegions(showCount));
+  }, [dispatch, showCount]);
 
   const handleAddRegion = () => {
     dispatch(
@@ -19,6 +40,15 @@ export default function RegionList() {
         name: regionInput,
       })
     );
+  };
+
+  const handleSelectAllClick = (e) => {
+    if (e.target.checked) {
+      const newSelecteds = region?.region?.map((item) => item.name);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
   };
 
   return onCreateRegion ? (
@@ -66,31 +96,61 @@ export default function RegionList() {
       </Box>
     </Box>
   ) : (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '25px 15px',
-      }}
-    >
-      <RegionContainer>
-        <h3>Region List</h3>
-        <p>
-          Geo <ChevronRightIcon /> Geo List
-        </p>
-      </RegionContainer>
-      <div>
-        <CustomButton
-          variant="contained"
-          bg="#0B2E4E"
-          padding="10px 20px"
-          startIcon={<AddIcon />}
-          onClick={() => setOnCreateRegion(true)}
-        >
-          Create New
-        </CustomButton>
-      </div>
+    <Box>
+      <CreateTitle setOnCreateRegion={setOnCreateRegion} />
+      {region?.region?.length > 0 ? (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell padding="checkbox">
+                  <Checkbox
+                    color="primary"
+                    indeterminate={
+                      selected.length > 0 &&
+                      selected.length < region?.region?.length
+                    }
+                    checked={
+                      region?.region?.length > 0 &&
+                      selected.length === region?.region?.length
+                    }
+                    onChange={handleSelectAllClick}
+                    inputProps={{
+                      'aria-label': 'select all desserts',
+                    }}
+                  />
+                </TableCell>
+                <TableCell width="200px" component="th">
+                  Sl. No.
+                </TableCell>
+                <TableCell component="th">Region</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {region?.region?.map((item, i) => (
+                <TableRow
+                  key={item.id}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      color="primary"
+                      checked={selected.indexOf(item.name) !== -1}
+                      inputProps={{
+                        'aria-labelledby': `enhanced-table-checkbox-${i}`,
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell component="td">{i + 1}</TableCell>
+                  <TableCell component="td">{item.name}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ) : (
+        <div>Test</div>
+      )}
     </Box>
   );
 }

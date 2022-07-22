@@ -19,10 +19,10 @@ import { createRegion, findRegions } from '../../../action/region-action';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import CreateTitle from './CreateTitle';
-import NoDataFoundImage from '../../../images/noDataFound.png';
+import NoData from './NoData';
 
 export default function RegionList() {
-  const { onCreateRegion, setOnCreateRegion } = useOutletContext();
+  const { onCreateRegion, handleOpenRegionForm } = useOutletContext();
   const [regionInput, setRegionInput] = useState('');
   const [showCount, setShowCount] = useState(10);
   const region = useSelector((store) => store.region);
@@ -96,7 +96,10 @@ export default function RegionList() {
     </Box>
   ) : (
     <Box>
-      <CreateTitle setOnCreateRegion={setOnCreateRegion} />
+      <CreateTitle
+        listTitle="Region List"
+        handleOpenForm={handleOpenRegionForm}
+      />
       {region?.region?.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="a dense table">
@@ -148,44 +151,7 @@ export default function RegionList() {
           </Table>
         </TableContainer>
       ) : (
-        <Paper
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            minHeight: '700px',
-            textAlign: 'center',
-          }}
-        >
-          <Box>
-            <Box
-              component="img"
-              src={NoDataFoundImage}
-              alt="NoDataFoundImage"
-            />
-            <Box
-              sx={{
-                color: '#9FA3A6',
-                fontSize: '20px',
-              }}
-            >
-              Currently you have no Data.
-              <br />
-              For next step first
-              <span
-                style={{
-                  color: '#556EE6',
-                  marginLeft: '5px',
-                  cursor: 'pointer',
-                  userSelect: 'none',
-                }}
-                onClick={() => setOnCreateRegion(true)}
-              >
-                Create Region
-              </span>
-            </Box>
-          </Box>
-        </Paper>
+        <NoData handleOpenForm={handleOpenRegionForm} />
       )}
     </Box>
   );

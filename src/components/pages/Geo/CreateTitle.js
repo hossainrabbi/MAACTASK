@@ -4,7 +4,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AddIcon from '@mui/icons-material/Add';
 import { CustomButton, RegionContainer } from '../../styles';
 
-export default function CreateTitle({ setOnCreateRegion }) {
+export default function CreateTitle({ listTitle, handleOpenForm }) {
   return (
     <Box
       sx={{
@@ -15,7 +15,7 @@ export default function CreateTitle({ setOnCreateRegion }) {
       }}
     >
       <RegionContainer>
-        <h3>Region List</h3>
+        <h3>{listTitle}</h3>
         <p>
           Geo <ChevronRightIcon /> Geo List
         </p>
@@ -26,7 +26,7 @@ export default function CreateTitle({ setOnCreateRegion }) {
           bg="#0B2E4E"
           padding="10px 20px"
           startIcon={<AddIcon />}
-          onClick={() => setOnCreateRegion(true)}
+          onClick={handleOpenForm}
         >
           Create New
         </CustomButton>

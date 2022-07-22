@@ -49,7 +49,7 @@ export const findRegions = (showCount) => async (dispatch) => {
     );
 
     const { data } = await axios.get(
-      `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1/sss`,
+      `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1`,
       config
     );
 

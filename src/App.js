@@ -8,8 +8,8 @@ import GeoInformationLayout from './components/GeoInformationLayout';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Home from './components/pages/Home';
-import RegionList from './components/pages/Region/RegionList';
-import AreaList from './components/pages/AreaList';
+import RegionList from './components/pages/Geo/RegionList';
+import AreaList from './components/pages/Geo/AreaList';
 
 export default function App() {
   return (

@@ -10,11 +10,24 @@ import { sidebarData } from '../data';
 export default function GeoInformationLayout() {
   const [open, setOpen] = useState(true);
   const [onCreateRegion, setOnCreateRegion] = useState(false);
+  const [onCreateArea, setOnCreateArea] = useState(false);
 
   const handleSidebarItem = (itemLink) => {
     if (itemLink === '/geo/region-list') {
       setOnCreateRegion(false);
     }
+
+    if (itemLink === '/geo/area-list') {
+      setOnCreateArea(false);
+    }
+  };
+
+  const handleOpenRegionForm = () => {
+    setOnCreateRegion(true);
+  };
+
+  const handleOpenAreaForm = () => {
+    setOnCreateArea(true);
   };
 
   return (
@@ -74,7 +87,14 @@ export default function GeoInformationLayout() {
             backgroundColor: '#F5F5F5',
           }}
         >
-          <Outlet context={{ onCreateRegion, setOnCreateRegion }} />
+          <Outlet
+            context={{
+              onCreateRegion,
+              handleOpenRegionForm,
+              onCreateArea,
+              handleOpenAreaForm,
+            }}
+          />
         </Box>
       </Box>
     </main>

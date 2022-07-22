@@ -1,39 +1,18 @@
-import { Box, Paper, styled, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import React from 'react';
-import { CustomButton } from '../../styles';
+import { CustomButton, RegionContainer, RegionInputField } from '../../styles';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AddIcon from '@mui/icons-material/Add';
 import { useOutletContext } from 'react-router-dom';
-
-const RegionContainer = styled(Box)(() => ({
-  h3: {
-    margin: 0,
-  },
-  p: {
-    display: 'flex',
-    alignItems: 'center',
-    margin: 0,
-  },
-}));
-
-const RegionInputField = styled(Paper)(() => ({
-  padding: '25px',
-  display: 'inline-block',
-  width: '500px',
-  marginTop: '50px',
-  small: {
-    color: '#495057',
-    marginBottom: '10px',
-    display: 'inline-block',
-  },
-  '& .input-button': {
-    marginTop: '50px',
-    textAlign: 'right',
-  },
-}));
+import { useState } from 'react';
 
 export default function RegionList() {
   const { onCreateRegion, setOnCreateRegion } = useOutletContext();
+  const [regionInput, setRegionInput] = useState('');
+
+  const handleAddRegion = () => {
+    console.log(regionInput);
+  };
 
   return onCreateRegion ? (
     <Box>
@@ -60,10 +39,20 @@ export default function RegionList() {
       >
         <RegionInputField>
           <small>Region</small>
-          <TextField fullWidth placeholder="Add Region" />
+          <TextField
+            fullWidth
+            placeholder="Add Region"
+            value={regionInput}
+            onChange={(e) => setRegionInput(e.target.value)}
+          />
           <div className="input-button">
-            <CustomButton variant="contained" bg="#0B2E4E" padding="10px 20px">
-              Create New
+            <CustomButton
+              variant="contained"
+              bg="#0B2E4E"
+              padding="10px 20px"
+              onClick={handleAddRegion}
+            >
+              Add Region
             </CustomButton>
           </div>
         </RegionInputField>

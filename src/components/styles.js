@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   IconButton,
+  Paper,
   Select,
   styled,
   TextField,
@@ -117,4 +118,32 @@ export const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+}));
+
+// Region List Page
+export const RegionContainer = styled(Box)(() => ({
+  h3: {
+    margin: 0,
+  },
+  p: {
+    display: 'flex',
+    alignItems: 'center',
+    margin: 0,
+  },
+}));
+
+export const RegionInputField = styled(Paper)(() => ({
+  padding: '25px',
+  display: 'inline-block',
+  width: '500px',
+  marginTop: '50px',
+  small: {
+    color: '#495057',
+    marginBottom: '10px',
+    display: 'inline-block',
+  },
+  '& .input-button': {
+    marginTop: '50px',
+    textAlign: 'right',
+  },
 }));

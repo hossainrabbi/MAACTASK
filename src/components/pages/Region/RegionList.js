@@ -5,13 +5,20 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AddIcon from '@mui/icons-material/Add';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
+import { createRegion } from '../../../action/region-action';
+import { useDispatch } from 'react-redux';
 
 export default function RegionList() {
   const { onCreateRegion, setOnCreateRegion } = useOutletContext();
   const [regionInput, setRegionInput] = useState('');
+  const dispatch = useDispatch();
 
   const handleAddRegion = () => {
-    console.log(regionInput);
+    dispatch(
+      createRegion({
+        name: regionInput,
+      })
+    );
   };
 
   return onCreateRegion ? (

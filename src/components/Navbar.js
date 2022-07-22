@@ -65,8 +65,7 @@ export default function Navbar() {
                 src={Logo}
               />
             </Box>
-            {JSON.parse(localStorage.getItem('authToken'))?.user?.name &&
-            !auth.isLogout ? (
+            {auth?.user?.employeeId ? (
               <Box sx={{ flexGrow: 0 }} disableGutters>
                 <IconButton onClick={handleOpenUserMenu} disableRipple>
                   <Avatar alt="Avatar" src={AvatarImage} />

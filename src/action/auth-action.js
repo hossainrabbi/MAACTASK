@@ -17,6 +17,7 @@ export const registerUser = (registerData) => async (dispatch) => {
     localStorage.setItem('authToken', JSON.stringify(data));
     dispatch(
       authAction.registerUser({
+        user: JSON.parse(localStorage.getItem('authToken')).user,
         error: '',
         loading: false,
         isSubmit: true,
@@ -46,9 +47,13 @@ export const loginUser = (loginData) => async (dispatch) => {
       loginData
     );
 
-    localStorage.setItem('authToken', JSON.stringify(data));
+    if (data.token) {
+      localStorage.setItem('authToken', JSON.stringify(data));
+    }
+
     dispatch(
       authAction.loginUser({
+        user: JSON.parse(localStorage.getItem('authToken')).user,
         error: '',
         loading: false,
         isSubmit: true,

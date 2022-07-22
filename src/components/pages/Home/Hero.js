@@ -1,18 +1,7 @@
-import { Box, Container, styled } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import React from 'react';
 import MobileImage from '../../../images/mobile.svg';
-import { CustomButton } from '../../styles';
-
-const HeroContainer = styled(Box)(() => ({
-  textAlign: 'center',
-  marginTop: '100px',
-  h1: {
-    fontSize: '58px',
-    width: '800px',
-    margin: '0 auto',
-    color: '#0B141F',
-  },
-}));
+import { CustomButton, HeroContainer } from '../../styles';
 
 export default function Hero() {
   return (

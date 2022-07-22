@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import {
   Avatar,
   Container,
   IconButton,
   Menu,
   MenuItem,
-  styled,
   Typography,
+  Box,
+  AppBar,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { CustomButton } from './styles';
-
-const NavBar = styled(Toolbar)(() => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-}));
+import { CustomButton, NavBar } from './styles';
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);

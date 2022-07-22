@@ -1,60 +1,10 @@
-import { Box, Container, Grid, styled } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
+import { productionFeatures } from '../../../data';
 import ProductionImage from '../../../images/production.svg';
 import ProductionIcon from '../../../images/productionIcon.svg';
+import { ProductionFeaturesContainer } from '../../styles';
 import Title from './Title';
-
-const ProductionFeaturesContainer = styled(Box)(() => ({
-  marginBottom: '50px',
-  img: {
-    padding: '8px',
-    borderRadius: '10px',
-    boxShadow: '0px 5px 7px 1px #dbdbdb',
-  },
-  h4: {
-    color: '#0B141F',
-    fontSize: '26px',
-    marginTop: '5px',
-    marginBottom: 0,
-  },
-  p: {
-    fontSize: '16px',
-    color: '#4E4E4E',
-  },
-}));
-
-const productionFeatures = [
-  {
-    title: 'Real-time analytics',
-    description:
-      'See product usage, sign-ins, feature metrics change as users work on your.',
-  },
-  {
-    title: 'Intuitive dashboard',
-    description:
-      'See product usage, sign-ins, feature metrics change as users work on your.',
-  },
-  {
-    title: 'Smart suggestions',
-    description:
-      'See product usage, sign-ins, feature metrics change as users work on your.',
-  },
-  {
-    title: 'Multiple views',
-    description:
-      'See product usage, sign-ins, feature metrics change as users work on your.',
-  },
-  {
-    title: 'AI-led diagnoses',
-    description:
-      'See product usage, sign-ins, feature metrics change as users work on your.',
-  },
-  {
-    title: 'Responsive',
-    description:
-      'See product usage, sign-ins, feature metrics change as users work on your.',
-  },
-];
 
 export default function ProductsFeatures() {
   return (

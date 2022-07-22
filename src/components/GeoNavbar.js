@@ -1,27 +1,14 @@
 import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import {
-  Avatar,
-  IconButton,
-  Menu,
-  MenuItem,
-  styled,
-  Typography,
-} from '@mui/material';
+import { Avatar, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import { authAction } from '../store/auth-slice';
 import { useDispatch } from 'react-redux';
-
-const NavBar = styled(Toolbar)(() => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-}));
+import { NavBar } from './styles';
 
 export default function GeoNavbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);

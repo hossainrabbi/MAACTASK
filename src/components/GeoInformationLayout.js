@@ -1,40 +1,11 @@
-import { Box, IconButton, Typography, styled } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import GeoNavbar from './GeoNavbar';
 import { useState } from 'react';
-import LocationIcon from '../images/location.svg';
-
-const Sidebar = styled(Box)(() => ({
-  width: '300px',
-  padding: '20px 10px',
-  height: 'calc(100vh - 63.9931px)',
-}));
-
-const MenuIcon = styled(IconButton)(() => ({
-  color: '#fff',
-  backgroundColor: '#0B2E4E !important',
-  marginRight: '-27px',
-}));
-
-const sidebarData = [
-  {
-    name: 'Geo Information',
-    link: '/geo',
-    icon: LocationIcon,
-  },
-  {
-    name: 'Region',
-    link: '/region-list',
-    icon: '',
-  },
-  {
-    name: 'Area',
-    link: '/area-list',
-    icon: '',
-  },
-];
+import { MenuIcon, Sidebar } from './styles';
+import { sidebarData } from '../data';
 
 export default function GeoInformationLayout() {
   const [open, setOpen] = useState(true);

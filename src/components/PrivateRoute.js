@@ -8,6 +8,6 @@ export default function PrivateRoute() {
     JSON.parse(localStorage.getItem('authToken'))?.user?.role === 'HUB' ? (
     <Outlet />
   ) : (
-    <Navigate to="/" state={{ from: location }} replace />
+    <Navigate to="/login" state={{ from: location }} replace />
   );
 }

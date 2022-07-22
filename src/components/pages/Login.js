@@ -1,31 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Box,
-  Container,
-  styled,
-  TextField,
-  Typography,
-  Button,
-  Alert,
-} from '@mui/material';
+import { Box, Container, Typography, Button, Alert } from '@mui/material';
 import { useState } from 'react';
 import { loginUser } from '../../action/auth-action';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-
-const InputTextField = styled(TextField)(() => ({
-  backgroundColor: 'transparent !important',
-  width: '100%',
-  marginBottom: '20px',
-  '.css-19mk8g1-MuiInputBase-root-MuiFilledInput-root': {
-    backgroundColor: 'transparent !important',
-  },
-  '.css-19mk8g1-MuiInputBase-root-MuiFilledInput-root:hover': {
-    backgroundColor: 'transparent !important',
-  },
-}));
+import { InputTextField } from '../styles';
 
 export default function Login() {
   const [loginData, setLoginData] = useState({

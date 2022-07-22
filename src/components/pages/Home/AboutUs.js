@@ -1,21 +1,10 @@
-import { Box, Container, Grid, styled } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
 import About from '../../../images/about.svg';
 import Title from './Title';
 import AvatarImage from '../../../images/avatar.svg';
 import BG from '../../../images/bg.svg';
-
-const AboutTitle = styled('div')(() => ({
-  p: {
-    fontSize: '22px',
-    color: '#4E4E4E',
-    marginTop: 0,
-  },
-  h3: {
-    fontSize: '22px',
-    color: '#0B141F',
-  },
-}));
+import { AboutTitle } from '../../styles';
 
 export default function AboutUs() {
   return (

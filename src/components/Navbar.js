@@ -16,8 +16,6 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { authAction } from '../store/auth-slice';
-import { useSelector, useDispatch } from 'react-redux';
 
 const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -27,8 +25,6 @@ const NavBar = styled(Toolbar)(() => ({
 
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const auth = useSelector((store) => store.auth);
-  const dispatch = useDispatch();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -41,7 +37,6 @@ export default function Navbar() {
   const handleLogout = () => {
     handleCloseUserMenu();
     localStorage.removeItem('authToken');
-    dispatch(authAction.logoutUser());
   };
 
   return (
@@ -66,7 +61,7 @@ export default function Navbar() {
                 src={Logo}
               />
             </Box>
-            {auth?.user?.employeeId ? (
+            {JSON.parse(localStorage.getItem('authToken'))?.user?.employeeId ? (
               <Box sx={{ flexGrow: 0 }} disableGutters>
                 <IconButton onClick={handleOpenUserMenu} disableRipple>
                   <Avatar alt="Avatar" src={AvatarImage} />

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
 import {
   Avatar,
   Container,
@@ -16,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { CustomButton } from './styles';
 
 const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -115,12 +115,26 @@ export default function Navbar() {
               </Box>
             ) : (
               <div>
-                <Button component={Link} to="/login" variant="contained">
+                <CustomButton
+                  component={Link}
+                  to="/login"
+                  variant="contained"
+                  bg="#0052CC"
+                  padding="5px 20px"
+                  style={{ marginRight: '5px' }}
+                >
                   Login
-                </Button>
-                <Button component={Link} to="/register" variant="contained">
+                </CustomButton>
+                <CustomButton
+                  component={Link}
+                  to="/register"
+                  variant="outlined"
+                  shadow="#0052CC"
+                  padding="5px 20px"
+                  style={{ marginLeft: '5px' }}
+                >
                   Register
-                </Button>
+                </CustomButton>
               </div>
             )}
           </NavBar>

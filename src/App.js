@@ -7,12 +7,14 @@ import Login from './components/pages/Login';
 import GeoInformationLayout from './components/GeoInformationLayout';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import Home from './components/pages/Home';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PublicLayout />}>
+          <Route path="" element={<Home />} />
           <Route element={<PublicRoute />}>
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />

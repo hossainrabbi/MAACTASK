@@ -5,7 +5,7 @@ import BG from '../images/bg.svg';
 
 export default function PublicLayout() {
   return (
-    <main style={{ backgroundImage: `url(${BG})` }}>
+    <main>
       <Navbar />
       <Outlet />
     </main>

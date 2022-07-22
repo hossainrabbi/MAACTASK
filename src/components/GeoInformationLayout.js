@@ -66,9 +66,6 @@ export default function GeoInformationLayout() {
             backgroundColor: '#dddddd',
           }}
         >
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus
-          quasi vitae dolor, quia ab dolorum enim, quibusdam ipsum deleniti
-          omnis commodi voluptates? Rem ipsam vitae magni quo eos atque debitis!
           <Outlet />
         </Box>
       </Box>

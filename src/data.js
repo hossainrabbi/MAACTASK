@@ -41,12 +41,12 @@ export const sidebarData = [
   },
   {
     name: 'Region',
-    link: '/region-list',
+    link: '/geo/region-list',
     icon: '',
   },
   {
     name: 'Area',
-    link: '/area-list',
+    link: '/geo/area-list',
     icon: '',
   },
 ];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PublicLayout from './components/PublicLayout';
 import CssBaseline from '@mui/material/CssBaseline';
 import Register from './components/pages/Register';
@@ -8,6 +8,8 @@ import GeoInformationLayout from './components/GeoInformationLayout';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Home from './components/pages/Home';
+import RegionList from './components/pages/RegionList';
+import AreaList from './components/pages/AreaList';
 
 export default function App() {
   return (
@@ -20,10 +22,13 @@ export default function App() {
             <Route path="login" element={<Login />} />
           </Route>
         </Route>
+
         <Route path="/geo" element={<PrivateRoute />}>
-          <Route path="" element={<GeoInformationLayout />}></Route>
-          <Route path="region-list" />
-          <Route path="area-list" />
+          <Route path="" element={<Navigate to="/geo/region-list" replace />} />
+          <Route path="" element={<GeoInformationLayout />}>
+            <Route path="region-list" element={<RegionList />} />
+            <Route path="area-list" element={<AreaList />} />
+          </Route>
         </Route>
       </Routes>
       <CssBaseline />

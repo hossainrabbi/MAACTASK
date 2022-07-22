@@ -1,21 +1,48 @@
 import { Box, FormControl, MenuItem, Select, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { CustomButton, RegionContainer, RegionInputField } from '../../styles';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CreateTitle from './CreateTitle';
+import { useSelector, useDispatch } from 'react-redux';
+import { createArea } from '../../../action/area-action';
+import { findRegions } from '../../../action/region-action';
 
 export default function AreaList() {
   const { onCreateArea, handleOpenAreaForm } = useOutletContext();
   const [regionSelectValue, setRegionSelectValue] = useState('Select Region');
+  const [error, setError] = useState('');
   const [areaInput, setAreaInput] = useState('');
+  const [showCount, setShowCount] = useState(10);
+  const { region } = useSelector((store) => store.region);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(findRegions(showCount));
+  }, [dispatch, showCount]);
 
   const handleAddArea = () => {
-    // dispatch(
-    //   createRegion({
-    //     name: regionInput,
-    //   })
-    // );
+    if (
+      regionSelectValue === 'Select Region' ||
+      regionSelectValue === 'No Data Found'
+    ) {
+      return setError('Please Select Region');
+    }
+
+    if (!areaInput) {
+      return setError('Type Area');
+    }
+
+    const findRegionId = region.find((item) => item.name === regionSelectValue);
+
+    if (!findRegionId) return setError('Select Region Again');
+
+    dispatch(
+      createArea({
+        name: areaInput,
+        region: findRegionId.id,
+      })
+    );
   };
 
   return onCreateArea ? (
@@ -56,9 +83,17 @@ export default function AreaList() {
               >
                 Select Region
               </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {region?.length > 0 ? (
+                region?.map((item) => (
+                  <MenuItem key={item._id} value={item.name}>
+                    {item.name}
+                  </MenuItem>
+                ))
+              ) : (
+                <MenuItem value={'No Data Found'} disabled>
+                  No Data Found
+                </MenuItem>
+              )}
             </Select>
           </FormControl>
           <small>Area</small>

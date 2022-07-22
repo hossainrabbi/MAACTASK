@@ -6,6 +6,7 @@ const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
     region: regionSlice.reducer,
+    area: regionSlice.reducer,
   },
 });
 

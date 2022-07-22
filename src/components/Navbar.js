@@ -17,7 +17,7 @@ import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { authAction } from '../store/auth-slice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -28,6 +28,7 @@ const NavBar = styled(Toolbar)(() => ({
 export default function Navbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
   const auth = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -40,7 +41,7 @@ export default function Navbar() {
   const handleLogout = () => {
     handleCloseUserMenu();
     localStorage.removeItem('authToken');
-    authAction.logoutUser();
+    dispatch(authAction.logoutUser());
   };
 
   return (

@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import { authAction } from '../store/auth-slice';
+import { useDispatch } from 'react-redux';
 
 const NavBar = styled(Toolbar)(() => ({
   display: 'flex',
@@ -24,6 +25,7 @@ const NavBar = styled(Toolbar)(() => ({
 
 export default function GeoNavbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const dispatch = useDispatch();
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -36,7 +38,7 @@ export default function GeoNavbar() {
   const handleLogout = () => {
     handleCloseUserMenu();
     localStorage.removeItem('authToken');
-    authAction.logoutUser();
+    dispatch(authAction.logoutUser());
   };
 
   return (

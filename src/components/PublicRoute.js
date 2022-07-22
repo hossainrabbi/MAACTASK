@@ -6,7 +6,7 @@ export default function PublicRoute() {
   const location = useLocation();
   const auth = useSelector((store) => store.auth);
 
-  return !auth?.user?.employeeId ? (
+  return !auth?.user ? (
     <Outlet />
   ) : (
     <Navigate to="/" state={{ from: location }} replace />

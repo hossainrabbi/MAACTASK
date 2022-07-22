@@ -17,13 +17,11 @@ export const createRegion = (regionData) => async (dispatch) => {
       })
     );
 
-    const { data } = await axios.post(
+    await axios.post(
       'https://staging-api.erpxbd.com/api/v1/region',
       regionData,
       config
     );
-
-    // console.log(data);
 
     dispatch(
       regionAction.createRegion({
@@ -51,7 +49,7 @@ export const findRegions = (showCount) => async (dispatch) => {
     );
 
     const { data } = await axios.get(
-      `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1`,
+      `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1/sss`,
       config
     );
 

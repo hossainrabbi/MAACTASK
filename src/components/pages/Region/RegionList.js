@@ -19,6 +19,7 @@ import { createRegion, findRegions } from '../../../action/region-action';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import CreateTitle from './CreateTitle';
+import NoDataFoundImage from '../../../images/noDataFound.png';
 
 export default function RegionList() {
   const { onCreateRegion, setOnCreateRegion } = useOutletContext();
@@ -27,8 +28,6 @@ export default function RegionList() {
   const region = useSelector((store) => store.region);
   const dispatch = useDispatch();
   const [selected, setSelected] = useState([]);
-
-  console.log(selected);
 
   useEffect(() => {
     dispatch(findRegions(showCount));
@@ -129,7 +128,7 @@ export default function RegionList() {
             <TableBody>
               {region?.region?.map((item, i) => (
                 <TableRow
-                  key={item.id}
+                  key={item._id}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell padding="checkbox">
@@ -149,7 +148,44 @@ export default function RegionList() {
           </Table>
         </TableContainer>
       ) : (
-        <div>Test</div>
+        <Paper
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '700px',
+            textAlign: 'center',
+          }}
+        >
+          <Box>
+            <Box
+              component="img"
+              src={NoDataFoundImage}
+              alt="NoDataFoundImage"
+            />
+            <Box
+              sx={{
+                color: '#9FA3A6',
+                fontSize: '20px',
+              }}
+            >
+              Currently you have no Data.
+              <br />
+              For next step first
+              <span
+                style={{
+                  color: '#556EE6',
+                  marginLeft: '5px',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                }}
+                onClick={() => setOnCreateRegion(true)}
+              >
+                Create Region
+              </span>
+            </Box>
+          </Box>
+        </Paper>
       )}
     </Box>
   );

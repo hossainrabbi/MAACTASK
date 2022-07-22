@@ -2,20 +2,7 @@ import { Box, Container, Grid, styled } from '@mui/material';
 import React from 'react';
 import ProductionImage from '../../../images/production.svg';
 import ProductionIcon from '../../../images/productionIcon.svg';
-
-const Title = styled(Box)(() => ({
-  h5: {
-    fontSize: '20px',
-    marginBottom: 0,
-    color: '#0052CC',
-  },
-  h2: {
-    fontSize: '48px',
-    fontWeight: '700',
-    marginTop: '5px',
-    color: '#0B141F',
-  },
-}));
+import Title from './Title';
 
 const ProductionFeaturesContainer = styled(Box)(() => ({
   marginBottom: '50px',
@@ -72,10 +59,12 @@ const productionFeatures = [
 export default function ProductsFeatures() {
   return (
     <Container>
-      <Title textAlign="center">
-        <h5>Products Features</h5>
-        <h2>Make more out of your data</h2>
-      </Title>
+      <Title
+        titleName="Products Features"
+        titleDescription="Make more out of your data"
+        descriptionsize="48px"
+        textAlign="center"
+      />
       <Grid container spacing={3}>
         <Grid item xs={3}>
           <Box

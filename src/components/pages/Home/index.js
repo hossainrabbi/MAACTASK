@@ -1,6 +1,7 @@
 import React from 'react';
 import Faq from '../../Faq';
 import AboutUs from './AboutUs';
+import Client from './Client';
 import Hero from './Hero';
 import ProductsFeatures from './ProductsFeatures';
 
@@ -12,6 +13,7 @@ export default function index() {
       <ProductsFeatures />
       <AboutUs />
       <Faq />
+      <Client />
     </div>
   );
 }

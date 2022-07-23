@@ -6,6 +6,11 @@ import MobileMonitorIcon from './images/monitor-mobile.svg';
 import PeopleIcon from './images/people.svg';
 import UserIcon from './images/user.svg';
 import CupIcon from './images/cup.svg';
+import Amara from './images/client/Amara.png';
+import Aven from './images/client/Aven.png';
+import Circle from './images/client/Circle.png';
+import Kyan from './images/client/Kyan.png';
+import Treva from './images/client/Treva.png';
 
 export const productionFeatures = [
   {
@@ -135,5 +140,28 @@ export const countProject = [
     name: 'In Operations',
     count: 300,
     icon: CupIcon,
+  },
+];
+
+export const client = [
+  {
+    id: 1,
+    image: Amara,
+  },
+  {
+    id: 2,
+    image: Aven,
+  },
+  {
+    id: 3,
+    image: Circle,
+  },
+  {
+    id: 4,
+    image: Kyan,
+  },
+  {
+    id: 5,
+    image: Treva,
   },
 ];

@@ -1,41 +1,21 @@
 import {
   Box,
   Checkbox,
-  FormControl,
   InputAdornment,
   MenuItem,
   Paper,
   Select,
-  styled,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
 } from '@mui/material';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { makeLengthArray } from '../../../utils/length';
-
-const SmallTextField = styled(TextField)(() => ({
-  '& .MuiOutlinedInput-root': {
-    borderRadius: '50px',
-  },
-  '& .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: '10.5px 14px',
-  },
-}));
-
-const SmallFormControl = styled(FormControl)(() => ({
-  borderRadius: '50px',
-  minWidth: '255.176px',
-  marginLeft: '20px',
-  '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: '10.5px 14px',
-  },
-}));
+import { SmallFormControl, SmallTextField } from '../../styles';
 
 export default function RegionListTable({
   selected,
@@ -70,7 +50,7 @@ export default function RegionListTable({
         <SmallFormControl>
           <Select
             value={
-              countRegion > 10
+              countRegion >= 10
                 ? countRegion
                 : makeLengthArray(region?.regionLength)[0]
                 ? makeLengthArray(region?.regionLength)[0]

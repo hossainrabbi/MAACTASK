@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  FormControl,
   IconButton,
   Paper,
   Select,
@@ -146,5 +147,24 @@ export const RegionInputField = styled(Paper)(() => ({
   '& .input-button': {
     marginTop: '50px',
     textAlign: 'right',
+  },
+}));
+
+// Region & Area Table
+export const SmallTextField = styled(TextField)(() => ({
+  '& .MuiOutlinedInput-root': {
+    borderRadius: '50px',
+  },
+  '& .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '10.5px 14px',
+  },
+}));
+
+export const SmallFormControl = styled(FormControl)(() => ({
+  borderRadius: '50px',
+  minWidth: '255.176px',
+  marginLeft: '20px',
+  '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '10.5px 14px',
   },
 }));

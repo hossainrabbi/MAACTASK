@@ -20,14 +20,13 @@ export default function AreaList() {
   const [regionSelectValue, setRegionSelectValue] = useState('Select Region');
   const [error, setError] = useState('');
   const [areaInput, setAreaInput] = useState('');
-  const [countRegion, setCountRegion] = useState(10);
+  // const [countRegion, setCountRegion] = useState(10);
   const [countArea, setCountArea] = useState(10);
   const [searchArea, setSearchArea] = useState('');
   const [selected, setSelected] = useState([]);
   const { region } = useSelector((store) => store.region);
-  const { area, isSubmit, createLoading, createError } = useSelector(
-    (store) => store.area
-  );
+  const { area, isSubmit, createLoading, createError, areaLength } =
+    useSelector((store) => store.area);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,12 +40,12 @@ export default function AreaList() {
   }, [error, isSubmit, createError]);
 
   useEffect(() => {
-    dispatch(findRegions(countRegion));
-  }, [dispatch, countRegion]);
+    dispatch(findRegions(10, ''));
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(findArea(countArea));
-  }, [dispatch, countArea]);
+    dispatch(findArea(countArea, searchArea));
+  }, [dispatch, countArea, searchArea]);
 
   const handleAddArea = () => {
     if (
@@ -83,6 +82,14 @@ export default function AreaList() {
     setSelected([]);
   };
 
+  const handleAreaSearch = (e) => {
+    setSearchArea(e.target.value);
+  };
+
+  const handleCountArea = (e) => {
+    setCountArea(e.target.value);
+  };
+
   return onCreateArea ? (
     <AreaListHeader
       regionSelectValue={regionSelectValue}
@@ -96,14 +103,19 @@ export default function AreaList() {
   ) : (
     <Box>
       <CreateTitle listTitle="Area List" handleOpenForm={handleOpenAreaForm} />
-      {area?.length > 0 ? (
+      {area?.length === 0 ? (
+        <NoData handleOpenForm={handleOpenAreaForm} />
+      ) : (
         <AreaListTable
           selected={selected}
           area={area}
           handleSelectAllClick={handleSelectAllClick}
+          searchArea={searchArea}
+          handleAreaSearch={handleAreaSearch}
+          countArea={countArea}
+          handleCountArea={handleCountArea}
+          areaLength={areaLength}
         />
-      ) : (
-        <NoData handleOpenForm={handleOpenAreaForm} />
       )}
     </Box>
   );

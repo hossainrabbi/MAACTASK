@@ -10,7 +10,6 @@ import NoData from './NoData';
 import { toast } from 'react-toastify';
 import RegionListTable from './RegionListTable';
 import RegionListHeader from './RegionListHeader';
-import { makeLengthArray } from '../../../utils/length';
 
 const options = {
   autoClose: 1000,

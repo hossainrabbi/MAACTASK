@@ -27,7 +27,7 @@ export const registerUser = (registerData) => async (dispatch) => {
     localStorage.removeItem('authToken');
     dispatch(
       authAction.registerUser({
-        error: err.response.data.message,
+        error: err?.response?.data?.message || err.message,
         loading: false,
       })
     );
@@ -63,7 +63,7 @@ export const loginUser = (loginData) => async (dispatch) => {
     localStorage.removeItem('authToken');
     dispatch(
       authAction.loginUser({
-        error: err.response.data.message,
+        error: err?.response?.data?.message || err.message,
         loading: false,
       })
     );

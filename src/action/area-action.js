@@ -4,7 +4,7 @@ import { areaAction } from '../store/area-slice';
 const config = {
   headers: {
     Authorization: `Bearer ${
-      JSON.parse(localStorage.getItem('authToken')).token
+      JSON.parse(localStorage.getItem('authToken'))?.token
     }`,
   },
 };
@@ -40,7 +40,7 @@ export const createArea = (areaData) => async (dispatch) => {
   }
 };
 
-export const findArea = (countArea) => async (dispatch) => {
+export const findArea = (countArea, searchArea) => async (dispatch) => {
   try {
     dispatch(
       areaAction.findArea({
@@ -49,13 +49,14 @@ export const findArea = (countArea) => async (dispatch) => {
     );
 
     const { data } = await axios.get(
-      `https://staging-api.erpxbd.com/api/v1/area/All/${countArea}/1`,
+      `https://staging-api.erpxbd.com/api/v1/area/All/${countArea}/1?name=${searchArea}`,
       config
     );
 
     dispatch(
       areaAction.findArea({
         area: data.area,
+        areaLength: data.length,
         error: '',
         loading: false,
       })

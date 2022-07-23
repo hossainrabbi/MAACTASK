@@ -1,6 +1,10 @@
 import {
+  Box,
   Checkbox,
+  InputAdornment,
+  MenuItem,
   Paper,
+  Select,
   Table,
   TableBody,
   TableCell,
@@ -9,14 +13,60 @@ import {
   TableRow,
 } from '@mui/material';
 import React from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import { SmallFormControl, SmallTextField } from '../../styles';
+import { makeLengthArray } from '../../../utils/length';
 
 export default function AreaListTable({
   selected,
   area,
   handleSelectAllClick,
+  searchArea,
+  handleAreaSearch,
+  countArea,
+  handleCountArea,
+  areaLength,
 }) {
   return (
     <TableContainer component={Paper}>
+      <Box
+        sx={{
+          padding: '20px',
+          display: 'flex',
+          justifyContent: 'right',
+        }}
+      >
+        <SmallTextField
+          placeholder="Search"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          value={searchArea}
+          onChange={handleAreaSearch}
+        />
+        <SmallFormControl>
+          <Select
+            value={
+              countArea >= 10
+                ? countArea
+                : makeLengthArray(areaLength)[0]
+                ? makeLengthArray(areaLength)[0]
+                : ''
+            }
+            onChange={handleCountArea}
+          >
+            {makeLengthArray(areaLength).map((item, i) => (
+              <MenuItem key={Math.random() * item + i} value={item}>
+                {item}
+              </MenuItem>
+            ))}
+          </Select>
+        </SmallFormControl>
+      </Box>
       <Table sx={{ minWidth: 650 }} aria-label="a dense table">
         <TableHead>
           <TableRow>

@@ -1,28 +1,14 @@
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  MenuItem,
-  Paper,
-  Select,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-} from '@mui/material';
+import Box from '@mui/material/Box';
 import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
-import { CustomButton, RegionContainer, RegionInputField } from '../../styles';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CreateTitle from './CreateTitle';
 import { useSelector, useDispatch } from 'react-redux';
 import { createArea, findArea } from '../../../action/area-action';
 import { findRegions } from '../../../action/region-action';
 import NoData from './NoData';
 import { toast } from 'react-toastify';
+import AreaListHeader from './AreaListHeader';
+import AreaListTable from './AreaListTable';
 
 const options = {
   autoClose: 1000,
@@ -97,139 +83,24 @@ export default function AreaList() {
   };
 
   return onCreateArea ? (
-    <Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '25px 15px',
-        }}
-      >
-        <RegionContainer>
-          <h3>Area List</h3>
-          <p>
-            Geo <ChevronRightIcon /> Geo List <ChevronRightIcon /> Create Geo
-          </p>
-        </RegionContainer>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <RegionInputField>
-          <small>Region</small>
-          <FormControl fullWidth>
-            <Select
-              value={regionSelectValue}
-              onChange={(e) => setRegionSelectValue(e.target.value)}
-              style={{ marginBottom: '20px' }}
-            >
-              <MenuItem
-                value="Select Region"
-                disabled
-                style={{ display: 'none' }}
-              >
-                Select Region
-              </MenuItem>
-              {region?.length > 0 ? (
-                region?.map((item) => (
-                  <MenuItem key={item._id} value={item.name}>
-                    {item.name}
-                  </MenuItem>
-                ))
-              ) : (
-                <MenuItem value={'No Data Found'} disabled>
-                  No Data Found
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-          <small>Area</small>
-          <TextField
-            fullWidth
-            placeholder={
-              regionSelectValue === 'Select Region' ||
-              regionSelectValue === 'No Data Found'
-                ? 'Before Type Area Please Select Region'
-                : 'Type Area'
-            }
-            value={areaInput}
-            onChange={(e) => setAreaInput(e.target.value)}
-            disabled={
-              regionSelectValue === 'Select Region' ||
-              regionSelectValue === 'No Data Found'
-            }
-          />
-          <div className="input-button">
-            <CustomButton
-              variant="contained"
-              bg="#0B2E4E"
-              padding="10px 20px"
-              onClick={handleAddArea}
-              disabled={createLoading}
-            >
-              {createLoading ? 'Loading...' : 'Add Area'}
-            </CustomButton>
-          </div>
-        </RegionInputField>
-      </Box>
-    </Box>
+    <AreaListHeader
+      regionSelectValue={regionSelectValue}
+      setRegionSelectValue={setRegionSelectValue}
+      region={region}
+      areaInput={areaInput}
+      setAreaInput={setAreaInput}
+      handleAddArea={handleAddArea}
+      createLoading={createLoading}
+    />
   ) : (
     <Box>
       <CreateTitle listTitle="Area List" handleOpenForm={handleOpenAreaForm} />
       {area?.length > 0 ? (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    color="primary"
-                    indeterminate={
-                      selected.length > 0 && selected.length < area?.length
-                    }
-                    checked={
-                      area?.length > 0 && selected.length === area?.length
-                    }
-                    onChange={handleSelectAllClick}
-                    inputProps={{
-                      'aria-label': 'select all desserts',
-                    }}
-                  />
-                </TableCell>
-                <TableCell width="200px" component="th">
-                  Sl. No.
-                </TableCell>
-                <TableCell component="th">Region</TableCell>
-                <TableCell component="th">Area</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {area?.map((item, i) => (
-                <TableRow
-                  key={item._id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      color="primary"
-                      checked={selected.indexOf(item.name) !== -1}
-                      inputProps={{
-                        'aria-labelledby': `enhanced-table-checkbox-${i}`,
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell component="td">{i + 1}</TableCell>
-                  <TableCell component="td">{item.region?.name}</TableCell>
-                  <TableCell component="td">{item.name}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <AreaListTable
+          selected={selected}
+          area={area}
+          handleSelectAllClick={handleSelectAllClick}
+        />
       ) : (
         <NoData handleOpenForm={handleOpenAreaForm} />
       )}

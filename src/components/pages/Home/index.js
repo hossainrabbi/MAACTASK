@@ -1,4 +1,5 @@
 import React from 'react';
+import Faq from '../../Faq';
 import AboutUs from './AboutUs';
 import Hero from './Hero';
 import ProductsFeatures from './ProductsFeatures';
@@ -10,6 +11,7 @@ export default function index() {
       <hr style={{ border: '1px solid #E1E1E1' }} />
       <ProductsFeatures />
       <AboutUs />
+      <Faq />
     </div>
   );
 }

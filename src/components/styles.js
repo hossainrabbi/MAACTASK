@@ -68,13 +68,14 @@ export const TitleBox = styled(Box)((props) => ({
   h5: {
     fontSize: '20px',
     marginBottom: 0,
-    color: '#0052CC',
+    fontWeight: '400',
+    color: props.titlecolor || '#0052CC',
   },
   h2: {
     fontSize: props.descriptionsize,
     fontWeight: '700',
     marginTop: '5px',
-    color: '#0B141F',
+    color: props.descriptioncolor || '#0B141F',
   },
 }));
 

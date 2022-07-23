@@ -71,3 +71,42 @@ export const socialData = [
     link: 'https://www.facebook.com',
   },
 ];
+
+export const faqData = [
+  {
+    id: 1,
+    name: 'What kind of data can I see in FieldX?',
+    description:
+      'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+  {
+    id: 2,
+    name: 'How do you take payments?',
+    description:
+      'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+  {
+    id: 3,
+    name: "Does Bizzy read my customers' data?",
+    description:
+      'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+  {
+    id: 4,
+    name: 'Can I also track website analytics on fieldX?',
+    description:
+      'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+  {
+    id: 5,
+    name: "What's your refund and cancellation policy?",
+    description:
+      'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+  {
+    id: 6,
+    name: 'What makes Bizzy different from other analytics tools?',
+    description:
+      'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+];

@@ -1,18 +1,5 @@
-import {
-  Box,
-  Checkbox,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TextField,
-} from '@mui/material';
+import Box from '@mui/material/Box';
 import React from 'react';
-import { CustomButton, RegionContainer, RegionInputField } from '../../styles';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import { createRegion, findRegions } from '../../../action/region-action';
@@ -21,6 +8,8 @@ import { useEffect } from 'react';
 import CreateTitle from './CreateTitle';
 import NoData from './NoData';
 import { toast } from 'react-toastify';
+import RegionListTable from './RegionListTable';
+import RegionListHeader from './RegionListHeader';
 
 const options = {
   autoClose: 1000,
@@ -44,8 +33,6 @@ export default function RegionList() {
       toast.success('Region added Successfully', options);
     }
   }, [error, region.isSubmit, region.createError]);
-
-  console.log(region.isSubmit);
 
   useEffect(() => {
     dispatch(findRegions(showCount));
@@ -72,50 +59,12 @@ export default function RegionList() {
   };
 
   return onCreateRegion ? (
-    <Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: '25px 15px',
-        }}
-      >
-        <RegionContainer>
-          <h3>Region List</h3>
-          <p>
-            Geo <ChevronRightIcon /> Geo List <ChevronRightIcon /> Create Geo
-          </p>
-        </RegionContainer>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <RegionInputField>
-          <small>Region</small>
-          <TextField
-            fullWidth
-            placeholder="Add Region"
-            value={regionInput}
-            onChange={(e) => setRegionInput(e.target.value)}
-          />
-          <div className="input-button">
-            <CustomButton
-              variant="contained"
-              bg="#0B2E4E"
-              padding="10px 20px"
-              onClick={handleAddRegion}
-              disabled={region.createLoading}
-            >
-              {region.createLoading ? 'Loading...' : 'Add Region'}
-            </CustomButton>
-          </div>
-        </RegionInputField>
-      </Box>
-    </Box>
+    <RegionListHeader
+      regionInput={regionInput}
+      handleAddRegion={handleAddRegion}
+      region={region}
+      setRegionInput={setRegionInput}
+    />
   ) : (
     <Box>
       <CreateTitle
@@ -123,55 +72,11 @@ export default function RegionList() {
         handleOpenForm={handleOpenRegionForm}
       />
       {region?.region?.length > 0 ? (
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    color="primary"
-                    indeterminate={
-                      selected.length > 0 &&
-                      selected.length < region?.region?.length
-                    }
-                    checked={
-                      region?.region?.length > 0 &&
-                      selected.length === region?.region?.length
-                    }
-                    onChange={handleSelectAllClick}
-                    inputProps={{
-                      'aria-label': 'select all desserts',
-                    }}
-                  />
-                </TableCell>
-                <TableCell width="200px" component="th">
-                  Sl. No.
-                </TableCell>
-                <TableCell component="th">Region</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {region?.region?.map((item, i) => (
-                <TableRow
-                  key={item._id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      color="primary"
-                      checked={selected.indexOf(item.name) !== -1}
-                      inputProps={{
-                        'aria-labelledby': `enhanced-table-checkbox-${i}`,
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell component="td">{i + 1}</TableCell>
-                  <TableCell component="td">{item.name}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <RegionListTable
+          selected={selected}
+          region={region}
+          handleSelectAllClick={handleSelectAllClick}
+        />
       ) : (
         <NoData handleOpenForm={handleOpenRegionForm} />
       )}

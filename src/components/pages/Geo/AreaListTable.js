@@ -51,11 +51,9 @@ export default function AreaListTable({
         <SmallFormControl>
           <Select
             value={
-              countArea >= 10
+              makeLengthArray(areaLength)[0] >= countArea
                 ? countArea
                 : makeLengthArray(areaLength)[0]
-                ? makeLengthArray(areaLength)[0]
-                : ''
             }
             onChange={handleCountArea}
           >

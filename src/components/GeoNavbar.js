@@ -7,11 +7,12 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/logo.svg';
 import AvatarImage from '../images/avatar.svg';
 import { authAction } from '../store/auth-slice';
-import { useDispatch } from 'react-redux';
-import { NavBar } from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { CustomButton, NavBar } from './styles';
 
 export default function GeoNavbar() {
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const auth = useSelector((store) => store.auth);
   const dispatch = useDispatch();
 
   const handleOpenUserMenu = (event) => {
@@ -24,7 +25,6 @@ export default function GeoNavbar() {
 
   const handleLogout = () => {
     handleCloseUserMenu();
-    localStorage.removeItem('authToken');
     dispatch(authAction.logoutUser());
   };
 
@@ -56,54 +56,78 @@ export default function GeoNavbar() {
               src={Logo}
             />
           </Box>
-          <Box sx={{ flexGrow: 0 }} disableGutters>
-            <IconButton onClick={handleOpenUserMenu} disableRipple>
-              <Avatar alt="Avatar" src={AvatarImage} />
-              <Typography
-                variant="subtitle2"
-                component="span"
-                marginLeft="2px"
-                alignItems="center"
-                display="flex"
-              >
-                <span>
-                  {JSON.parse(localStorage.getItem('authToken'))?.user?.name}
-                </span>
-                <ExpandMoreIcon />
-              </Typography>
-            </IconButton>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem onClick={handleCloseUserMenu}>
+          {auth?.user?.user?.employeeId ? (
+            <Box sx={{ flexGrow: 0 }} disableGutters>
+              <IconButton onClick={handleOpenUserMenu} disableRipple>
+                <Avatar alt="Avatar" src={AvatarImage} />
                 <Typography
-                  textAlign="center"
-                  variant="p"
-                  component={Link}
-                  to="/geo/region-list"
-                  style={{ textDecoration: 'none', color: '#444' }}
+                  variant="subtitle2"
+                  component="span"
+                  marginLeft="2px"
+                  alignItems="center"
+                  display="flex"
                 >
-                  Dashboard
+                  <span>{auth?.user?.user?.name}</span>
+                  <ExpandMoreIcon />
                 </Typography>
-              </MenuItem>
-              <MenuItem onClick={handleLogout}>
-                <Typography textAlign="center">Logout</Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
+              </IconButton>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography
+                    textAlign="center"
+                    variant="p"
+                    component={Link}
+                    to="/geo/region-list"
+                    style={{ textDecoration: 'none', color: '#444' }}
+                  >
+                    Dashboard
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Logout</Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          ) : (
+            <div>
+              <CustomButton
+                component={Link}
+                to="/login"
+                variant="contained"
+                bg="#0052CC"
+                padding="5px 20px"
+                style={{ marginRight: '5px' }}
+              >
+                Login
+              </CustomButton>
+              <CustomButton
+                component={Link}
+                to="/register"
+                variant="outlined"
+                shadow="#0052CC"
+                textcolor="#0052CC"
+                padding="5px 20px"
+                style={{ marginLeft: '5px' }}
+              >
+                Register
+              </CustomButton>
+            </div>
+          )}
         </NavBar>
       </AppBar>
     </Box>

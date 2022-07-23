@@ -14,17 +14,15 @@ export const registerUser = (registerData) => async (dispatch) => {
       registerData
     );
 
-    localStorage.setItem('authToken', JSON.stringify(data));
     dispatch(
       authAction.registerUser({
-        user: JSON.parse(localStorage.getItem('authToken')).user,
+        user: data,
         error: '',
         loading: false,
         isSubmit: true,
       })
     );
   } catch (err) {
-    localStorage.removeItem('authToken');
     dispatch(
       authAction.registerUser({
         error: err?.response?.data?.message || err.message,
@@ -47,20 +45,15 @@ export const loginUser = (loginData) => async (dispatch) => {
       loginData
     );
 
-    if (data.token) {
-      localStorage.setItem('authToken', JSON.stringify(data));
-    }
-
     dispatch(
       authAction.loginUser({
-        user: JSON.parse(localStorage.getItem('authToken')).user,
+        user: data,
         error: '',
         loading: false,
         isSubmit: true,
       })
     );
   } catch (err) {
-    localStorage.removeItem('authToken');
     dispatch(
       authAction.loginUser({
         error: err?.response?.data?.message || err.message,

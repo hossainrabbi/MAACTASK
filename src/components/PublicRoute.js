@@ -1,10 +1,12 @@
 import React from 'react';
 import { Outlet, Navigate, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export default function PublicRoute() {
   const location = useLocation();
+  const auth = useSelector((store) => store.auth);
 
-  return !JSON.parse(localStorage.getItem('authToken'))?.user ? (
+  return !auth?.user?.token ? (
     <Outlet />
   ) : (
     <Navigate to="/" state={{ from: location }} replace />

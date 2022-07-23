@@ -7,12 +7,15 @@ import store from './store';
 import 'react-toastify/dist/ReactToastify.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={store.__persistor} loading={false}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

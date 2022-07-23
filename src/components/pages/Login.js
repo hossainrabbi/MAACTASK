@@ -4,8 +4,6 @@ import { Box, Container, Typography, Button, Alert } from '@mui/material';
 import { useState } from 'react';
 import { loginUser } from '../../action/auth-action';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
 import { InputTextField } from '../styles';
 
 export default function Login() {
@@ -15,16 +13,6 @@ export default function Login() {
   });
   const auth = useSelector((store) => store.auth);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const from = location?.state?.from?.pathname || '/';
-
-  useEffect(() => {
-    if (auth?.isSubmit) {
-      navigate(from, { replace: true });
-    }
-  }, [auth?.isSubmit, navigate, from]);
 
   const handleLogin = (e) => {
     e.preventDefault();

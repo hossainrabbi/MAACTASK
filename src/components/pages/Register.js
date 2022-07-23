@@ -14,8 +14,6 @@ import {
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../../action/auth-action';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { InputSelect, InputTextField } from '../styles';
 
 export default function Register() {
@@ -31,16 +29,6 @@ export default function Register() {
   });
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const from = location?.state?.from?.pathname || '/';
-
-  useEffect(() => {
-    if (auth?.isSubmit) {
-      navigate(from, { replace: true });
-    }
-  }, [auth?.isSubmit, from, navigate]);
 
   const handleRegister = (e) => {
     e.preventDefault();

@@ -25,7 +25,6 @@ export default function App() {
         </Route>
 
         <Route path="/geo" element={<PrivateRoute />}>
-          {/* <Route path="" element={<Navigate to="/geo/region-list" replace />} /> */}
           <Route path="" element={<GeoInformationLayout />}>
             <Route path="region-list" element={<RegionList />} />
             <Route path="area-list" element={<AreaList />} />

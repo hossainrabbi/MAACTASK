@@ -23,6 +23,7 @@ import NoData from './NoData';
 
 export default function RegionList() {
   const { onCreateRegion, handleOpenRegionForm } = useOutletContext();
+  const [error, setError] = useState('');
   const [regionInput, setRegionInput] = useState('');
   const [showCount, setShowCount] = useState(10);
   const region = useSelector((store) => store.region);
@@ -34,6 +35,8 @@ export default function RegionList() {
   }, [dispatch, showCount]);
 
   const handleAddRegion = () => {
+    if (!regionInput) return setError('Type Region');
+
     dispatch(
       createRegion({
         name: regionInput,

@@ -8,6 +8,11 @@ const areaSlice = createSlice({
       state.loading = action.payload.loading;
       state.error = action.payload.error;
     },
+    findArea(state, action) {
+      state.loading = action.payload.loading;
+      state.error = action.payload.error;
+      state.area = action.payload.area;
+    },
   },
 });
 

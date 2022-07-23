@@ -38,3 +38,33 @@ export const createArea = (areaData) => async (dispatch) => {
     );
   }
 };
+
+export const findArea = (countArea) => async (dispatch) => {
+  try {
+    dispatch(
+      areaAction.findArea({
+        loading: true,
+      })
+    );
+
+    const { data } = await axios.get(
+      `https://staging-api.erpxbd.com/api/v1/area/All/${countArea}/1`,
+      config
+    );
+
+    dispatch(
+      areaAction.findArea({
+        area: data.area,
+        error: '',
+        loading: false,
+      })
+    );
+  } catch (err) {
+    dispatch(
+      areaAction.findArea({
+        error: err?.response?.data?.message || err.message,
+        loading: false,
+      })
+    );
+  }
+};

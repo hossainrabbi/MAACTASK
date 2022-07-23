@@ -93,7 +93,7 @@ export default function GeoNavbar() {
                   textAlign="center"
                   variant="p"
                   component={Link}
-                  to="/geo"
+                  to="/geo/region-list"
                   style={{ textDecoration: 'none', color: '#444' }}
                 >
                   Dashboard

@@ -18,27 +18,27 @@ const options = {
 export default function AreaList() {
   const { onCreateArea, handleOpenAreaForm } = useOutletContext();
   const [regionSelectValue, setRegionSelectValue] = useState('Select Region');
-  const [error, setError] = useState('');
+  const [typeError, setTypeError] = useState('');
   const [areaInput, setAreaInput] = useState('');
   // const [countRegion, setCountRegion] = useState(10);
   const [countArea, setCountArea] = useState(10);
   const [searchArea, setSearchArea] = useState('');
   const [selected, setSelected] = useState([]);
   const { region } = useSelector((store) => store.region);
-  const { area, isSubmit, loading, createError, areaLength } = useSelector(
+  const { area, isSubmit, loading, error, areaLength } = useSelector(
     (store) => store.area
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (typeError) toast.error(typeError, options);
     if (error) toast.error(error, options);
-    if (createError) toast.error(createError, options);
     if (isSubmit) {
       setAreaInput('');
       setRegionSelectValue('Select Region');
       toast.success('Area added Successfully', options);
     }
-  }, [error, isSubmit, createError]);
+  }, [typeError, isSubmit, error]);
 
   useEffect(() => {
     dispatch(findRegions(10, ''));
@@ -53,18 +53,18 @@ export default function AreaList() {
       regionSelectValue === 'Select Region' ||
       regionSelectValue === 'No Data Found'
     ) {
-      return setError('Please Select Region');
+      return setTypeError('Please Select Region');
     }
 
     if (!areaInput) {
-      return setError('Type Area');
+      return setTypeError('Type Area');
     }
 
-    setError('');
+    setTypeError('');
 
     const findRegionId = region.find((item) => item.name === regionSelectValue);
 
-    if (!findRegionId) return setError('Select Region Again');
+    if (!findRegionId) return setTypeError('Select Region Again');
 
     dispatch(
       createArea({

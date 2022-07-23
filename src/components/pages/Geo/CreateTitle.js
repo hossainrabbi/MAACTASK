@@ -17,7 +17,8 @@ export default function CreateTitle({ listTitle, handleOpenForm }) {
       <RegionContainer>
         <h3>{listTitle}</h3>
         <p>
-          Geo <ChevronRightIcon /> Geo List
+          Geo <ChevronRightIcon />{' '}
+          <span style={{ color: '#0052CC' }}>Geo List</span>
         </p>
       </RegionContainer>
       <div>

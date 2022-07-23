@@ -28,12 +28,12 @@ export default function RegionList() {
 
   useEffect(() => {
     if (error) toast.error(error, options);
-    if (region.createError) toast.error(region.createError, options);
+    if (region.error) toast.error(region.error, options);
     if (region.isSubmit) {
       setRegionInput('');
       toast.success('Region added Successfully', options);
     }
-  }, [error, region.isSubmit, region.createError]);
+  }, [error, region.isSubmit, region.error]);
 
   useEffect(() => {
     dispatch(findRegions(countRegion, searchRegion));

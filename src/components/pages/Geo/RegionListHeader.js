@@ -22,7 +22,8 @@ export default function RegionListHeader({
         <RegionContainer>
           <h3>Region List</h3>
           <p>
-            Geo <ChevronRightIcon /> Geo List <ChevronRightIcon /> Create Geo
+            Geo <ChevronRightIcon /> Geo List <ChevronRightIcon />{' '}
+            <span style={{ color: '#0052CC' }}>Create Geo</span>
           </p>
         </RegionContainer>
       </Box>

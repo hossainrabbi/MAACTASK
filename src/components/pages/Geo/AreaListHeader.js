@@ -12,6 +12,11 @@ export default function AreaListHeader({
   handleAddArea,
   loading,
 }) {
+  // const location = useLocation();
+  // const locationArr = location.pathname
+  //   .split('/')
+  //   .filter((item) => item.length > 0).join(' > ');
+
   return (
     <Box>
       <Box
@@ -25,7 +30,8 @@ export default function AreaListHeader({
         <RegionContainer>
           <h3>Area List</h3>
           <p>
-            Geo <ChevronRightIcon /> Geo List <ChevronRightIcon /> Create Geo
+            Geo <ChevronRightIcon /> Geo List <ChevronRightIcon />{' '}
+            <span style={{ color: '#0052CC' }}>Create Geo</span>
           </p>
         </RegionContainer>
       </Box>

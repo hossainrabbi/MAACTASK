@@ -4,8 +4,7 @@ const areaSlice = createSlice({
   name: 'area',
   initialState: {
     loading: false,
-    createError: '',
-    findError: '',
+    error: '',
     area: [],
     areaLength: 0,
     isSubmit: false,
@@ -13,13 +12,14 @@ const areaSlice = createSlice({
   reducers: {
     createArea(state, action) {
       state.loading = action.payload.loading;
-      state.createError = action.payload.error;
+      state.error = action.payload.error;
       state.isSubmit = action.payload.isSubmit;
     },
     findArea(state, action) {
       state.findError = action.payload.error;
       state.area = action.payload.area;
       state.areaLength = action.payload.areaLength;
+      state.isSubmit = false;
     },
   },
 });

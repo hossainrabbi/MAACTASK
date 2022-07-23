@@ -26,7 +26,6 @@ export default function RegionListTable({
   handleRegionSearch,
   handleCountRegion,
 }) {
-  // console.log(makeLengthArray(region?.regionLength)[0]);
   return (
     <TableContainer component={Paper}>
       <Box
@@ -49,14 +48,7 @@ export default function RegionListTable({
           onChange={handleRegionSearch}
         />
         <SmallFormControl>
-          <Select
-            value={
-              makeLengthArray(region?.regionLength)[0] >= countRegion
-                ? countRegion
-                : makeLengthArray(region?.regionLength)[0]
-            }
-            onChange={handleCountRegion}
-          >
+          <Select value={countRegion} onChange={handleCountRegion}>
             {makeLengthArray(region?.regionLength).map((item, i) => (
               <MenuItem key={Math.random() * item + i} value={item}>
                 {item}

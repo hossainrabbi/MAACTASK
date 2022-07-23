@@ -1,4 +1,7 @@
 import LocationIcon from './images/location.svg';
+import FacebookIcon from './images/facebook.svg';
+import LinkedInIcon from './images/linkedin.svg';
+import TwitterIcon from './images/twitter.svg';
 
 export const productionFeatures = [
   {
@@ -48,5 +51,23 @@ export const sidebarData = [
     name: 'Area',
     link: '/geo/area-list',
     icon: '',
+  },
+];
+
+export const socialData = [
+  {
+    title: 'Twitter',
+    icon: TwitterIcon,
+    link: 'https://twitter.com',
+  },
+  {
+    title: 'LinkedIn',
+    icon: LinkedInIcon,
+    link: 'https://www.linkedin.com/feed',
+  },
+  {
+    title: 'Facebook',
+    icon: FacebookIcon,
+    link: 'https://www.facebook.com',
   },
 ];

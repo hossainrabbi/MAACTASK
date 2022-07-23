@@ -24,6 +24,7 @@ export default function Hero() {
           <CustomButton
             variant="outlined"
             shadow="#0052CC"
+            textcolor="#0052CC"
             padding="15px 30px"
             style={{ marginLeft: '10px' }}
           >

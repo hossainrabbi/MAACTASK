@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 export const CustomButton = styled(Button)((props) => ({
-  color: '#ffffff !important',
+  color: props.textcolor || '#ffffff !important',
   backgroundColor: `${props.bg} !important`,
   padding: props.padding,
   textTransform: 'capitalize',
@@ -166,5 +166,27 @@ export const SmallFormControl = styled(FormControl)(() => ({
   marginLeft: '20px',
   '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
     padding: '10.5px 14px',
+  },
+}));
+
+// Footer Area
+export const FooterContainer = styled(Box)(() => ({
+  backgroundColor: '#00193D',
+  padding: '50px 0px',
+  color: '#ffffff',
+  '& .footer-icon': {
+    margin: '0 15px',
+  },
+}));
+
+export const FooterCopyRight = styled(Box)(() => ({
+  textAlign: 'center',
+  paddingTop: '50px',
+  paddingBottom: '30px',
+  fontSize: '18px',
+  borderTop: '1px solid #0D3166',
+  span: {
+    color: '#F60E0E',
+    marginLeft: '5px',
   },
 }));

@@ -122,6 +122,7 @@ export default function Navbar() {
                   to="/register"
                   variant="outlined"
                   shadow="#0052CC"
+                  textcolor="#0052CC"
                   padding="5px 20px"
                   style={{ marginLeft: '5px' }}
                 >

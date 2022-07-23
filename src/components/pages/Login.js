@@ -106,7 +106,7 @@ export default function Login() {
             marginTop="20px"
             marginBottom="0px"
           >
-            Don’t have any account? <Link to="/login">Sign Up</Link>
+            Don’t have any account? <Link to="/register">Sign Up</Link>
           </Typography>
         </Box>
       </Box>

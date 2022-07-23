@@ -49,14 +49,7 @@ export default function AreaListTable({
           onChange={handleAreaSearch}
         />
         <SmallFormControl>
-          <Select
-            value={
-              makeLengthArray(areaLength)[0] >= countArea
-                ? countArea
-                : makeLengthArray(areaLength)[0]
-            }
-            onChange={handleCountArea}
-          >
+          <Select value={countArea} onChange={handleCountArea}>
             {makeLengthArray(areaLength).map((item, i) => (
               <MenuItem key={Math.random() * item + i} value={item}>
                 {item}
@@ -66,7 +59,7 @@ export default function AreaListTable({
         </SmallFormControl>
       </Box>
       <Table sx={{ minWidth: 650 }} aria-label="a dense table">
-        <TableHead>
+        <TableHead sx={{ backgroundColor: '#F8F9FA' }}>
           <TableRow>
             <TableCell padding="checkbox">
               <Checkbox

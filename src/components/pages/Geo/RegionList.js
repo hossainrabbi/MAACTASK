@@ -20,7 +20,8 @@ export default function RegionList() {
   const { onCreateRegion, handleOpenRegionForm } = useOutletContext();
   const [error, setError] = useState('');
   const [regionInput, setRegionInput] = useState('');
-  const [showCount, setShowCount] = useState(10);
+  const [countRegion, setCountRegion] = useState(10);
+  const [searchRegion, setSearchRegion] = useState('');
   const region = useSelector((store) => store.region);
   const dispatch = useDispatch();
   const [selected, setSelected] = useState([]);
@@ -35,8 +36,8 @@ export default function RegionList() {
   }, [error, region.isSubmit, region.createError]);
 
   useEffect(() => {
-    dispatch(findRegions(showCount));
-  }, [dispatch, showCount]);
+    dispatch(findRegions(countRegion, searchRegion));
+  }, [dispatch, countRegion, searchRegion]);
 
   const handleAddRegion = () => {
     if (!regionInput) return setError('Type Region');
@@ -49,6 +50,10 @@ export default function RegionList() {
     );
   };
 
+  const handleRegionSearch = (e) => {
+    setSearchRegion(e.target.value);
+  };
+
   const handleSelectAllClick = (e) => {
     if (e.target.checked) {
       const newSelecteds = region?.region?.map((item) => item.name);
@@ -57,6 +62,8 @@ export default function RegionList() {
     }
     setSelected([]);
   };
+
+  console.log(region?.region?.length);
 
   return onCreateRegion ? (
     <RegionListHeader
@@ -71,14 +78,16 @@ export default function RegionList() {
         listTitle="Region List"
         handleOpenForm={handleOpenRegionForm}
       />
-      {region?.region?.length > 0 ? (
+      {region?.region?.length === 0 ? (
+        <NoData handleOpenForm={handleOpenRegionForm} />
+      ) : (
         <RegionListTable
           selected={selected}
           region={region}
+          searchRegion={searchRegion}
           handleSelectAllClick={handleSelectAllClick}
+          handleRegionSearch={handleRegionSearch}
         />
-      ) : (
-        <NoData handleOpenForm={handleOpenRegionForm} />
       )}
     </Box>
   );

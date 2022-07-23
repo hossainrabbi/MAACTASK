@@ -22,6 +22,7 @@ export default function AreaList() {
   const [areaInput, setAreaInput] = useState('');
   const [countRegion, setCountRegion] = useState(10);
   const [countArea, setCountArea] = useState(10);
+  const [searchArea, setSearchArea] = useState('');
   const [selected, setSelected] = useState([]);
   const { region } = useSelector((store) => store.region);
   const { area, isSubmit, createLoading, createError } = useSelector(

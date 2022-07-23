@@ -1,24 +1,82 @@
 import {
+  Box,
   Checkbox,
+  FormControl,
+  InputAdornment,
+  MenuItem,
   Paper,
+  Select,
+  styled,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
 } from '@mui/material';
 import React from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+
+const SmallTextField = styled(TextField)(() => ({
+  '& .MuiOutlinedInput-root': {
+    borderRadius: '50px',
+  },
+  '& .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '10.5px 14px',
+  },
+}));
+
+const SmallFormControl = styled(FormControl)(() => ({
+  borderRadius: '50px',
+  minWidth: '255.176px',
+  marginLeft: '20px',
+  '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '10.5px 14px',
+  },
+}));
 
 export default function RegionListTable({
   selected,
   region,
+  searchRegion,
   handleSelectAllClick,
+  handleRegionSearch,
 }) {
   return (
     <TableContainer component={Paper}>
+      <Box
+        sx={{
+          padding: '20px',
+          display: 'flex',
+          justifyContent: 'right',
+        }}
+      >
+        <SmallTextField
+          placeholder="Search"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+          value={searchRegion}
+          onChange={handleRegionSearch}
+        />
+        <SmallFormControl>
+          <Select
+            value={10}
+            // onChange={handleChange}
+          >
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={20}>20</MenuItem>
+            <MenuItem value={30}>30</MenuItem>
+          </Select>
+        </SmallFormControl>
+      </Box>
       <Table sx={{ minWidth: 650 }} aria-label="a dense table">
-        <TableHead>
+        <TableHead sx={{ backgroundColor: '#F8F9FA' }}>
           <TableRow>
             <TableCell padding="checkbox">
               <Checkbox

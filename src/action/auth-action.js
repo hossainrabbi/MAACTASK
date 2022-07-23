@@ -14,6 +14,8 @@ export const registerUser = (registerData) => async (dispatch) => {
       registerData
     );
 
+    localStorage.setItem('authToken', JSON.stringify(data));
+
     dispatch(
       authAction.registerUser({
         user: data,
@@ -44,6 +46,8 @@ export const loginUser = (loginData) => async (dispatch) => {
       'https://staging-api.erpxbd.com/api/v1/users/login',
       loginData
     );
+
+    localStorage.setItem('authToken', JSON.stringify(data));
 
     dispatch(
       authAction.loginUser({

@@ -4,7 +4,7 @@ import { regionAction } from '../store/region-slice';
 const config = {
   headers: {
     Authorization: `Bearer ${
-      JSON.parse(JSON.parse(localStorage.getItem('fieldX-login'))?.user)?.token
+      JSON.parse(localStorage.getItem('authToken'))?.token
     }`,
   },
 };

@@ -11,8 +11,6 @@ export default function AreaListHeader({
   setAreaInput,
   handleAddArea,
   loading,
-  searchRegion,
-  handleRegionSearch,
 }) {
   // const location = useLocation();
   // const locationArr = location.pathname
@@ -58,14 +56,6 @@ export default function AreaListHeader({
               >
                 Select Region
               </MenuItem>
-              <Box sx={{ padding: '15px' }}>
-                <TextField
-                  value={searchRegion}
-                  onChange={handleRegionSearch}
-                  fullWidth
-                  variant="outlined"
-                />
-              </Box>
               {region?.length > 0 ? (
                 region?.map((item) => (
                   <MenuItem key={item._id} value={item.name}>

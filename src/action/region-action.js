@@ -33,7 +33,7 @@ export const createRegion = (regionData) => async (dispatch) => {
   } catch (err) {
     dispatch(
       regionAction.createRegion({
-        error: err?.response?.data?.message || err.message,
+        error: err?.response?.data?.message,
         loading: false,
       })
     );
@@ -57,7 +57,7 @@ export const findRegions = (showCount, searchRegion) => async (dispatch) => {
   } catch (err) {
     dispatch(
       regionAction.findRegion({
-        error: err?.response?.data?.message || err.message,
+        error: err?.response?.data?.message,
       })
     );
   }

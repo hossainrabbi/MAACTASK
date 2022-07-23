@@ -23,6 +23,7 @@ export default function AreaList() {
   // const [countRegion, setCountRegion] = useState(10);
   const [countArea, setCountArea] = useState(10);
   const [searchArea, setSearchArea] = useState('');
+  const [searchRegion, setSearchRegion] = useState('');
   const [selected, setSelected] = useState([]);
   const { region } = useSelector((store) => store.region);
   const { area, isSubmit, loading, error, areaLength } = useSelector(
@@ -41,8 +42,8 @@ export default function AreaList() {
   }, [typeError, isSubmit, error]);
 
   useEffect(() => {
-    dispatch(findRegions(10, ''));
-  }, [dispatch]);
+    dispatch(findRegions(10, searchRegion));
+  }, [dispatch, searchRegion]);
 
   useEffect(() => {
     dispatch(findArea(countArea, searchArea));
@@ -87,6 +88,10 @@ export default function AreaList() {
     setSearchArea(e.target.value);
   };
 
+  const handleRegionSearch = (e) => {
+    setSearchRegion(e.target.value);
+  };
+
   const handleCountArea = (e) => {
     setCountArea(e.target.value);
   };
@@ -100,6 +105,8 @@ export default function AreaList() {
       setAreaInput={setAreaInput}
       handleAddArea={handleAddArea}
       loading={loading}
+      searchRegion={searchRegion}
+      handleRegionSearch={handleRegionSearch}
     />
   ) : (
     <Box>

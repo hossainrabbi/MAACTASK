@@ -33,7 +33,7 @@ export const createArea = (areaData) => async (dispatch) => {
   } catch (err) {
     dispatch(
       areaAction.createArea({
-        error: err?.response?.data?.message || err.message,
+        error: err?.response?.data?.message,
         loading: false,
       })
     );
@@ -57,7 +57,7 @@ export const findArea = (countArea, searchArea) => async (dispatch) => {
   } catch (err) {
     dispatch(
       areaAction.findArea({
-        error: err?.response?.data?.message || err.message,
+        error: err?.response?.data?.message,
       })
     );
   }

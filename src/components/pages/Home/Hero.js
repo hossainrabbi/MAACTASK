@@ -31,8 +31,8 @@ export default function Hero() {
             Download
           </CustomButton>
         </Box>
-        <div>
-          <img src={MobileImage} alt="MobileImage" />
+        <div className="mobile-laptop">
+          <img style={{ width: '100%' }} src={MobileImage} alt="MobileImage" />
         </div>
       </HeroContainer>
     </Container>

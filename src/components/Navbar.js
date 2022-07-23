@@ -33,7 +33,14 @@ export default function Navbar() {
 
   return (
     <Box>
-      <AppBar position="static" color="transparent">
+      <AppBar
+        position="static"
+        color="transparent"
+        sx={{
+          boxShadow: 'none',
+          borderBottom: '1px solid #C2D2EB',
+        }}
+      >
         <Container maxWidth="xl">
           <NavBar>
             <Box

@@ -3,7 +3,7 @@ import React from 'react';
 import { productionFeatures } from '../../../data';
 import ProductionImage from '../../../images/production.png';
 import ProductionIcon from '../../../images/productionIcon.svg';
-import { ProductionFeaturesContainer } from '../../styles';
+import { FeaturesImageGrid, ProductionFeaturesContainer } from '../../styles';
 import Title from './Title';
 
 export default function ProductsFeatures() {
@@ -16,7 +16,7 @@ export default function ProductsFeatures() {
         textAlign="center"
       />
       <Grid container spacing={3}>
-        <Grid item xs={3}>
+        <Grid item xs={6} lg={3}>
           <Box
             sx={{
               marginTop: '120px',
@@ -27,9 +27,7 @@ export default function ProductsFeatures() {
               .map((item) => (
                 <ProductionFeaturesContainer
                   key={item.title}
-                  sx={{
-                    textAlign: 'right',
-                  }}
+                  className="text-right"
                 >
                   <img src={ProductionIcon} alt={ProductionIcon} />
                   <h4>{item.title}</h4>
@@ -38,7 +36,7 @@ export default function ProductsFeatures() {
               ))}
           </Box>
         </Grid>
-        <Grid item xs={6}>
+        <FeaturesImageGrid item xs={0} lg={6}>
           <Box
             sx={{
               maxWidth: '100%',
@@ -47,8 +45,8 @@ export default function ProductsFeatures() {
             src={ProductionImage}
             alt="ProductionImage"
           />
-        </Grid>
-        <Grid item xs={3}>
+        </FeaturesImageGrid>
+        <Grid item xs={6} lg={3}>
           <Box
             sx={{
               marginTop: '120px',
@@ -60,7 +58,10 @@ export default function ProductsFeatures() {
                 productionFeatures.length
               )
               .map((item) => (
-                <ProductionFeaturesContainer key={item.title}>
+                <ProductionFeaturesContainer
+                  className="text-left"
+                  key={item.title}
+                >
                   <img src={ProductionIcon} alt={ProductionIcon} />
                   <h4>{item.title}</h4>
                   <p>{item.description}</p>

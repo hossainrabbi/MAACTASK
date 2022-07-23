@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   FormControl,
+  Grid,
   IconButton,
   Paper,
   Select,
@@ -35,14 +36,20 @@ export const AboutTitle = styled('div')(() => ({
 }));
 
 // Hero Section
-export const HeroContainer = styled(Box)(() => ({
+export const HeroContainer = styled(Box)(({ theme }) => ({
   textAlign: 'center',
   marginTop: '100px',
   h1: {
-    fontSize: '58px',
-    width: '800px',
+    fontSize: '40px',
     margin: '0 auto',
     color: '#0B141F',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '58px',
+      width: '800px',
+    },
+  },
+  '& .mobile-laptop': {
+    maxWidth: '100%',
   },
 }));
 
@@ -67,8 +74,27 @@ export const CounterCount = styled(Typography)(() => ({
 }));
 
 // ProductionFeatures Section
-export const ProductionFeaturesContainer = styled(Box)(() => ({
+export const ProductionFeaturesContainer = styled(Box)(({ theme }) => ({
   marginBottom: '50px',
+  textAlign: 'center',
+  paddingLeft: '15px',
+  paddingRight: '15px',
+
+  '&.text-right': {
+    [theme.breakpoints.up('lg')]: {
+      textAlign: 'right',
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+  },
+  '&.text-left': {
+    [theme.breakpoints.up('lg')]: {
+      textAlign: 'left',
+      paddingLeft: 0,
+      paddingRight: 0,
+    },
+  },
+
   img: {
     padding: '8px',
     borderRadius: '10px',
@@ -86,6 +112,13 @@ export const ProductionFeaturesContainer = styled(Box)(() => ({
   },
 }));
 
+export const FeaturesImageGrid = styled(Grid)(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.up('lg')]: {
+    display: 'block',
+  },
+}));
+
 // Title Component
 export const TitleBox = styled(Box)((props) => ({
   h5: {
@@ -95,10 +128,13 @@ export const TitleBox = styled(Box)((props) => ({
     color: props.titlecolor || '#0052CC',
   },
   h2: {
-    fontSize: props.descriptionsize,
+    fontSize: '35px',
     fontWeight: '700',
     marginTop: '5px',
     color: props.descriptioncolor || '#0B141F',
+    [props.theme.breakpoints.up('md')]: {
+      fontSize: props.descriptionsize,
+    },
   },
 }));
 
@@ -193,7 +229,7 @@ export const SmallFormControl = styled(FormControl)(() => ({
   },
 }));
 
-// FAQ area
+// FAQ Component
 export const FaqContainer = styled(Box)(() => ({
   backgroundColor: '#0052CC',
   backgroundImage: `url(${Shape})`,
@@ -202,7 +238,16 @@ export const FaqContainer = styled(Box)(() => ({
   padding: '70px 0',
 }));
 
-// Footer Area
+// Client Component
+export const ClientTitle = styled(Typography)(() => ({
+  textAlign: 'center',
+  color: '#0052CC',
+  fontSize: '32px',
+  fontWeight: 500,
+  marginBottom: '50px',
+}));
+
+// Footer Component
 export const FooterContainer = styled(Box)(() => ({
   backgroundColor: '#00193D',
   padding: '50px 0px',

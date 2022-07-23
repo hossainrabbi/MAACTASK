@@ -8,6 +8,7 @@ import {
   AboutUsContainer,
   CounterContainer,
   CounterCount,
+  FeaturesImageGrid,
 } from '../../styles';
 import { countProject } from '../../../data';
 
@@ -16,10 +17,10 @@ export default function AboutUs() {
     <AboutUsContainer>
       <Container>
         <Grid container spacing={1}>
-          <Grid item xs={6}>
+          <FeaturesImageGrid item lg={6}>
             <Box component="img" src={About} alt="About Us" />
-          </Grid>
-          <Grid item xs={6}>
+          </FeaturesImageGrid>
+          <Grid item lg={6}>
             <Box>
               <Title
                 titleName="About Us"

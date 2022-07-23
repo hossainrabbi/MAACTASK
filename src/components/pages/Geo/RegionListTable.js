@@ -17,6 +17,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
+import { makeLengthArray } from '../../../utils/length';
 
 const SmallTextField = styled(TextField)(() => ({
   '& .MuiOutlinedInput-root': {
@@ -40,8 +41,10 @@ export default function RegionListTable({
   selected,
   region,
   searchRegion,
+  countRegion,
   handleSelectAllClick,
   handleRegionSearch,
+  handleCountRegion,
 }) {
   return (
     <TableContainer component={Paper}>
@@ -66,12 +69,20 @@ export default function RegionListTable({
         />
         <SmallFormControl>
           <Select
-            value={10}
-            // onChange={handleChange}
+            value={
+              countRegion > 10
+                ? countRegion
+                : makeLengthArray(region?.regionLength)[0]
+                ? makeLengthArray(region?.regionLength)[0]
+                : ''
+            }
+            onChange={handleCountRegion}
           >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
+            {makeLengthArray(region?.regionLength).map((item, i) => (
+              <MenuItem key={Math.random() * item + i} value={item}>
+                {item}
+              </MenuItem>
+            ))}
           </Select>
         </SmallFormControl>
       </Box>

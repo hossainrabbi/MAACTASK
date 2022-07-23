@@ -10,6 +10,7 @@ import NoData from './NoData';
 import { toast } from 'react-toastify';
 import RegionListTable from './RegionListTable';
 import RegionListHeader from './RegionListHeader';
+import { makeLengthArray } from '../../../utils/length';
 
 const options = {
   autoClose: 1000,
@@ -54,6 +55,10 @@ export default function RegionList() {
     setSearchRegion(e.target.value);
   };
 
+  const handleCountRegion = (e) => {
+    setCountRegion(e.target.value);
+  };
+
   const handleSelectAllClick = (e) => {
     if (e.target.checked) {
       const newSelecteds = region?.region?.map((item) => item.name);
@@ -62,8 +67,6 @@ export default function RegionList() {
     }
     setSelected([]);
   };
-
-  console.log(region?.region?.length);
 
   return onCreateRegion ? (
     <RegionListHeader
@@ -85,8 +88,10 @@ export default function RegionList() {
           selected={selected}
           region={region}
           searchRegion={searchRegion}
+          countRegion={countRegion}
           handleSelectAllClick={handleSelectAllClick}
           handleRegionSearch={handleRegionSearch}
+          handleCountRegion={handleCountRegion}
         />
       )}
     </Box>

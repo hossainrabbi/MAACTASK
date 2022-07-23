@@ -56,6 +56,7 @@ export const findRegions = (showCount, searchRegion) => async (dispatch) => {
     dispatch(
       regionAction.findRegion({
         region: data.region,
+        regionLength: data.length,
         error: '',
         loading: false,
       })

@@ -8,6 +8,7 @@ const regionSlice = createSlice({
     findLoading: false,
     findError: '',
     region: [],
+    regionLength: 0,
     isSubmit: false,
   },
   reducers: {
@@ -20,6 +21,7 @@ const regionSlice = createSlice({
       state.findLoading = action.payload.loading;
       state.findError = action.payload.error;
       state.region = action.payload.region;
+      state.regionLength = action.payload.regionLength;
     },
   },
 });

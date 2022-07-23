@@ -10,7 +10,7 @@ export default function AreaListHeader({
   areaInput,
   setAreaInput,
   handleAddArea,
-  createLoading,
+  loading,
 }) {
   return (
     <Box>
@@ -85,9 +85,9 @@ export default function AreaListHeader({
               bg="#0B2E4E"
               padding="10px 20px"
               onClick={handleAddArea}
-              disabled={createLoading}
+              disabled={loading}
             >
-              {createLoading ? 'Loading...' : 'Add Area'}
+              {loading ? 'Loading...' : 'Add Area'}
             </CustomButton>
           </div>
         </RegionInputField>

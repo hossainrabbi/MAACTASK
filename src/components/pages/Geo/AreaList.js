@@ -25,8 +25,9 @@ export default function AreaList() {
   const [searchArea, setSearchArea] = useState('');
   const [selected, setSelected] = useState([]);
   const { region } = useSelector((store) => store.region);
-  const { area, isSubmit, createLoading, createError, areaLength } =
-    useSelector((store) => store.area);
+  const { area, isSubmit, loading, createError, areaLength } = useSelector(
+    (store) => store.area
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -98,7 +99,7 @@ export default function AreaList() {
       areaInput={areaInput}
       setAreaInput={setAreaInput}
       handleAddArea={handleAddArea}
-      createLoading={createLoading}
+      loading={loading}
     />
   ) : (
     <Box>

@@ -46,9 +46,9 @@ export default function RegionListHeader({
               bg="#0B2E4E"
               padding="10px 20px"
               onClick={handleAddRegion}
-              disabled={region.createLoading}
+              disabled={region.loading}
             >
-              {region.createLoading ? 'Loading...' : 'Add Region'}
+              {region.loading ? 'Loading...' : 'Add Region'}
             </CustomButton>
           </div>
         </RegionInputField>

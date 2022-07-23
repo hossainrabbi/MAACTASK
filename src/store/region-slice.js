@@ -3,9 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const regionSlice = createSlice({
   name: 'region',
   initialState: {
-    createLoading: false,
+    loading: false,
     createError: '',
-    findLoading: false,
     findError: '',
     region: [],
     regionLength: 0,
@@ -13,12 +12,11 @@ const regionSlice = createSlice({
   },
   reducers: {
     createRegion(state, action) {
-      state.createLoading = action.payload.loading;
+      state.loading = action.payload.loading;
       state.createError = action.payload.error;
       state.isSubmit = action.payload.isSubmit;
     },
     findRegion(state, action) {
-      state.findLoading = action.payload.loading;
       state.findError = action.payload.error;
       state.region = action.payload.region;
       state.regionLength = action.payload.regionLength;

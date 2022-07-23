@@ -42,12 +42,6 @@ export const createRegion = (regionData) => async (dispatch) => {
 
 export const findRegions = (showCount, searchRegion) => async (dispatch) => {
   try {
-    dispatch(
-      regionAction.findRegion({
-        loading: true,
-      })
-    );
-
     const { data } = await axios.get(
       `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1?name=${searchRegion}`,
       config
@@ -58,15 +52,12 @@ export const findRegions = (showCount, searchRegion) => async (dispatch) => {
         region: data.region,
         regionLength: data.length,
         error: '',
-        loading: false,
       })
     );
   } catch (err) {
     dispatch(
       regionAction.findRegion({
-        region: [],
         error: err?.response?.data?.message || err.message,
-        loading: false,
       })
     );
   }

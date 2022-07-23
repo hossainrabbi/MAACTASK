@@ -30,7 +30,14 @@ export default function GeoNavbar() {
 
   return (
     <Box>
-      <AppBar position="static" color="transparent">
+      <AppBar
+        position="static"
+        color="transparent"
+        sx={{
+          boxShadow: 'none',
+          borderBottom: '1px solid #C2D2EB',
+        }}
+      >
         <NavBar>
           <Box
             component={Link}

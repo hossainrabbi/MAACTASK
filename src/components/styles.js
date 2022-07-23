@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import Shape from '../images/faqShape.png';
 import BGShape from '../images/bg.svg';
+import { NavLink } from 'react-router-dom';
 
 export const CustomButton = styled(Button)((props) => ({
   color: props.textcolor || '#ffffff !important',
@@ -163,10 +164,11 @@ export const InputSelect = styled(Select)(() => ({
 }));
 
 // Geo Information Layout
-export const Sidebar = styled(Box)(() => ({
-  width: '300px',
+export const Sidebar = styled(Box)(({ open }) => ({
+  width: open ? '300px' : '70px',
   padding: '20px 10px',
   height: 'calc(100vh - 63.9931px)',
+  transition: '.1s',
 }));
 
 export const MenuIcon = styled(IconButton)(() => ({
@@ -267,4 +269,23 @@ export const FooterCopyRight = styled(Box)(() => ({
     color: '#F60E0E',
     marginLeft: '5px',
   },
+}));
+
+// Geo Information Layout
+export const NavLinkItem = styled(NavLink)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '5px 0',
+  textDecoration: 'none',
+  color: '#757575',
+  marginBottom: '5px',
+}));
+
+export const NavBoxItem = styled(Box)(() => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '5px 0',
+  textDecoration: 'none',
+  color: '#757575',
+  marginBottom: '5px',
 }));

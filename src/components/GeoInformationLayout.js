@@ -1,11 +1,13 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import GeoNavbar from './GeoNavbar';
 import { useState } from 'react';
-import { MenuIcon, Sidebar } from './styles';
+import { MenuIcon, NavBoxItem, NavLinkItem, Sidebar } from './styles';
 import { sidebarData } from '../data';
+import LocationIcon from '../images/location.svg';
 
 export default function GeoInformationLayout() {
   const [open, setOpen] = useState(true);
@@ -30,11 +32,25 @@ export default function GeoInformationLayout() {
     setOnCreateArea(true);
   };
 
+  let activeStyle = {
+    color: '#0052CC',
+    position: 'relative',
+    // '&::before': {
+    //   content: `''`,
+    //   position: 'absolute',
+    //   left: '-50px',
+    //   top: '50px',
+    //   width: '50px',
+    //   height: '50px',
+    //   backgroundColor: '#0052CC',
+    // },
+  };
+
   return (
     <main>
       <GeoNavbar />
       <Box sx={{ display: 'flex' }}>
-        <Sidebar component="aside">
+        <Sidebar open={open} component="aside">
           <Box
             sx={{
               display: 'flex',
@@ -42,41 +58,55 @@ export default function GeoInformationLayout() {
               alignItems: 'center',
             }}
           >
-            <Typography variant="subtitle2" component="h5">
-              MENU
-            </Typography>
-            <MenuIcon onClick={() => setOpen(!open)}>
-              <NavigateBeforeIcon />
+            {open && (
+              <Typography variant="subtitle2" component="h5">
+                MENU
+              </Typography>
+            )}
+            <MenuIcon
+              sx={{ marginBottom: '10px' }}
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <NavigateBeforeIcon /> : <NavigateNextIcon />}
             </MenuIcon>
           </Box>
           <Box>
-            {sidebarData.map((item) => (
-              <Box
-                component={NavLink}
-                to={item.link}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  padding: '5px 0',
-                  textDecoration: 'none',
-                  color: '#757575',
-                  marginBottom: '5px',
-                }}
-                key={item.name}
-                onClick={() => handleSidebarItem(item.link)}
-              >
+            {open && (
+              <NavBoxItem>
                 <Box
-                  component={item.icon ? 'img' : 'span'}
-                  src={item.icon}
+                  component={'img'}
+                  src={LocationIcon}
                   sx={{
                     width: '20px',
                     marginRight: '10px',
                   }}
                 />
                 <Typography variant="subtitle2" component="p">
+                  Geo Information
+                </Typography>
+              </NavBoxItem>
+            )}
+            {sidebarData.map((item) => (
+              <NavLinkItem
+                to={item.link}
+                key={item.name}
+                style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                onClick={() => handleSidebarItem(item.link)}
+              >
+                {open && (
+                  <Box
+                    component={item.icon ? 'img' : 'span'}
+                    src={item.icon}
+                    sx={{
+                      width: '20px',
+                      marginRight: '10px',
+                    }}
+                  />
+                )}
+                <Typography variant="subtitle2" component="p">
                   {item.name}
                 </Typography>
-              </Box>
+              </NavLinkItem>
             ))}
           </Box>
         </Sidebar>

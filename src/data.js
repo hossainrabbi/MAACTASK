@@ -1,4 +1,4 @@
-import LocationIcon from './images/location.svg';
+// import LocationIcon from './images/location.svg';
 import FacebookIcon from './images/facebook.svg';
 import LinkedInIcon from './images/linkedin.svg';
 import TwitterIcon from './images/twitter.svg';
@@ -46,11 +46,11 @@ export const productionFeatures = [
 ];
 
 export const sidebarData = [
-  {
-    name: 'Geo Information',
-    link: '/geo',
-    icon: LocationIcon,
-  },
+  // {
+  //   name: 'Geo Information',
+  //   link: '/geo',
+  //   icon: LocationIcon,
+  // },
   {
     name: 'Region',
     link: '/geo/region-list',

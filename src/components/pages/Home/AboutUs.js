@@ -1,14 +1,19 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import React from 'react';
 import About from '../../../images/about.svg';
 import Title from './Title';
 import AvatarImage from '../../../images/avatar.svg';
-import BG from '../../../images/bg.svg';
-import { AboutTitle } from '../../styles';
+import {
+  AboutTitle,
+  AboutUsContainer,
+  CounterContainer,
+  CounterCount,
+} from '../../styles';
+import { countProject } from '../../../data';
 
 export default function AboutUs() {
   return (
-    <section style={{ backgroundImage: `url(${BG})` }}>
+    <AboutUsContainer>
       <Container>
         <Grid container spacing={1}>
           <Grid item xs={6}>
@@ -53,7 +58,31 @@ export default function AboutUs() {
             </Box>
           </Grid>
         </Grid>
+        <Grid container spacing={1}>
+          {countProject.map((countItem) => (
+            <Grid key={countItem.name} item xs={3}>
+              <CounterContainer>
+                <Box
+                  component="img"
+                  src={countItem.icon}
+                  alt={countItem.name}
+                />
+                <CounterCount variant="h5">
+                  {`${countItem.count} ${
+                    countItem.name === 'In Operations' ? 'day' : '+'
+                  }`}
+                </CounterCount>
+                <Typography
+                  sx={{ fontSize: '24px', color: '#4E4E4E' }}
+                  variant="subtitle1"
+                >
+                  {countItem.name}
+                </Typography>
+              </CounterContainer>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
-    </section>
+    </AboutUsContainer>
   );
 }

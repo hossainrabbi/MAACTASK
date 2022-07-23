@@ -8,7 +8,10 @@ import {
   styled,
   TextField,
   Toolbar,
+  Typography,
 } from '@mui/material';
+import Shape from '../images/faqShape.png';
+import BGShape from '../images/bg.svg';
 
 export const CustomButton = styled(Button)((props) => ({
   color: props.textcolor || '#ffffff !important',
@@ -41,6 +44,26 @@ export const HeroContainer = styled(Box)(() => ({
     margin: '0 auto',
     color: '#0B141F',
   },
+}));
+
+// AboutUs area
+export const AboutUsContainer = styled(Box)(() => ({
+  backgroundImage: `url(${BGShape})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'noRepeat',
+}));
+
+export const CounterContainer = styled(Box)(() => ({
+  textAlign: 'center',
+  marginTop: '70px',
+  paddingBottom: '100px',
+}));
+
+export const CounterCount = styled(Typography)(() => ({
+  fontSize: '40px',
+  color: '#0052CC',
+  fontWeight: 700,
+  padding: '10px 0',
 }));
 
 // ProductionFeatures Section
@@ -168,6 +191,15 @@ export const SmallFormControl = styled(FormControl)(() => ({
   '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
     padding: '10.5px 14px',
   },
+}));
+
+// FAQ area
+export const FaqContainer = styled(Box)(() => ({
+  backgroundColor: '#0052CC',
+  backgroundImage: `url(${Shape})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'noRepeat',
+  padding: '70px 0',
 }));
 
 // Footer Area

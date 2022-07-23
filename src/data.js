@@ -2,6 +2,10 @@ import LocationIcon from './images/location.svg';
 import FacebookIcon from './images/facebook.svg';
 import LinkedInIcon from './images/linkedin.svg';
 import TwitterIcon from './images/twitter.svg';
+import MobileMonitorIcon from './images/monitor-mobile.svg';
+import PeopleIcon from './images/people.svg';
+import UserIcon from './images/user.svg';
+import CupIcon from './images/cup.svg';
 
 export const productionFeatures = [
   {
@@ -108,5 +112,28 @@ export const faqData = [
     name: 'What makes Bizzy different from other analytics tools?',
     description:
       'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in voluptate.',
+  },
+];
+
+export const countProject = [
+  {
+    name: 'Platforms Created',
+    count: 10,
+    icon: MobileMonitorIcon,
+  },
+  {
+    name: 'Total Users',
+    count: 1559,
+    icon: PeopleIcon,
+  },
+  {
+    name: 'Total Clients',
+    count: 10,
+    icon: UserIcon,
+  },
+  {
+    name: 'In Operations',
+    count: 300,
+    icon: CupIcon,
   },
 ];

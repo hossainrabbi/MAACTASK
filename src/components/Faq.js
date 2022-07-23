@@ -8,19 +8,13 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { faqData } from '../data';
-import Shape from '../images/faqShape.png';
 import Title from './pages/Home/Title';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { FaqContainer } from './styles';
 
 export default function Faq() {
   return (
-    <div
-      style={{
-        backgroundColor: '#0052CC',
-        backgroundImage: `url(${Shape})`,
-        padding: '70px 0',
-      }}
-    >
+    <FaqContainer>
       <Container>
         <Title
           titleName="Common Question"
@@ -51,6 +45,6 @@ export default function Faq() {
           ))}
         </Grid>
       </Container>
-    </div>
+    </FaqContainer>
   );
 }

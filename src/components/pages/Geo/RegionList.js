@@ -20,6 +20,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import CreateTitle from './CreateTitle';
 import NoData from './NoData';
+import { toast } from 'react-toastify';
+
+const options = {
+  autoClose: 1000,
+  position: toast.POSITION.TOP_RIGHT,
+};
 
 export default function RegionList() {
   const { onCreateRegion, handleOpenRegionForm } = useOutletContext();
@@ -31,11 +37,23 @@ export default function RegionList() {
   const [selected, setSelected] = useState([]);
 
   useEffect(() => {
+    if (error) toast.error(error, options);
+    if (region.createError) toast.error(region.createError, options);
+    if (region.isSubmit) {
+      setRegionInput('');
+      toast.success('Region added Successfully', options);
+    }
+  }, [error, region.isSubmit, region.createError]);
+
+  console.log(region.isSubmit);
+
+  useEffect(() => {
     dispatch(findRegions(showCount));
   }, [dispatch, showCount]);
 
   const handleAddRegion = () => {
     if (!regionInput) return setError('Type Region');
+    setError('');
 
     dispatch(
       createRegion({
@@ -90,8 +108,9 @@ export default function RegionList() {
               bg="#0B2E4E"
               padding="10px 20px"
               onClick={handleAddRegion}
+              disabled={region.createLoading}
             >
-              Add Region
+              {region.createLoading ? 'Loading...' : 'Add Region'}
             </CustomButton>
           </div>
         </RegionInputField>

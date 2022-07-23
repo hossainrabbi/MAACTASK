@@ -73,6 +73,8 @@ export default function AreaList() {
       return setError('Type Area');
     }
 
+    setError('');
+
     const findRegionId = region.find((item) => item.name === regionSelectValue);
 
     if (!findRegionId) return setError('Select Region Again');

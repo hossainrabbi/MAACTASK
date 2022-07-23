@@ -27,6 +27,7 @@ export const createRegion = (regionData) => async (dispatch) => {
       regionAction.createRegion({
         error: '',
         loading: false,
+        isSubmit: true,
       })
     );
   } catch (err) {

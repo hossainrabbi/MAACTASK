@@ -2,15 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const regionSlice = createSlice({
   name: 'region',
-  initialState: { loading: false, error: '', region: [] },
+  initialState: {
+    createLoading: false,
+    createError: '',
+    findLoading: false,
+    findError: '',
+    region: [],
+    isSubmit: false,
+  },
   reducers: {
     createRegion(state, action) {
-      state.loading = action.payload.loading;
-      state.error = action.payload.error;
+      state.createLoading = action.payload.loading;
+      state.createError = action.payload.error;
+      state.isSubmit = action.payload.isSubmit;
     },
     findRegion(state, action) {
-      state.loading = action.payload.loading;
-      state.error = action.payload.error;
+      state.findLoading = action.payload.loading;
+      state.findError = action.payload.error;
       state.region = action.payload.region;
     },
   },

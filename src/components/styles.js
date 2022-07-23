@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 
 export const CustomButton = styled(Button)((props) => ({
+  color: '#ffffff !important',
   backgroundColor: `${props.bg} !important`,
   padding: props.padding,
   textTransform: 'capitalize',

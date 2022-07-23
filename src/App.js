@@ -10,6 +10,7 @@ import PublicRoute from './components/PublicRoute';
 import Home from './components/pages/Home';
 import RegionList from './components/pages/Geo/RegionList';
 import AreaList from './components/pages/Geo/AreaList';
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
         </Route>
       </Routes>
       <CssBaseline />
+      <ToastContainer />
     </BrowserRouter>
   );
 }

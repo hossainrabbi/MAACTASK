@@ -27,6 +27,7 @@ export const createArea = (areaData) => async (dispatch) => {
       areaAction.createArea({
         error: '',
         loading: false,
+        isSubmit: true,
       })
     );
   } catch (err) {

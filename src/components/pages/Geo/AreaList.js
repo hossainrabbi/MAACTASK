@@ -22,6 +22,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createArea, findArea } from '../../../action/area-action';
 import { findRegions } from '../../../action/region-action';
 import NoData from './NoData';
+import { toast } from 'react-toastify';
+
+const options = {
+  autoClose: 1000,
+  position: toast.POSITION.TOP_RIGHT,
+};
 
 export default function AreaList() {
   const { onCreateArea, handleOpenAreaForm } = useOutletContext();
@@ -32,8 +38,20 @@ export default function AreaList() {
   const [countArea, setCountArea] = useState(10);
   const [selected, setSelected] = useState([]);
   const { region } = useSelector((store) => store.region);
-  const { area } = useSelector((store) => store.area);
+  const { area, isSubmit, createLoading, createError } = useSelector(
+    (store) => store.area
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (error) toast.error(error, options);
+    if (createError) toast.error(createError, options);
+    if (isSubmit) {
+      setAreaInput('');
+      setRegionSelectValue('Select Region');
+      toast.success('Area added Successfully', options);
+    }
+  }, [error, isSubmit, createError]);
 
   useEffect(() => {
     dispatch(findRegions(countRegion));
@@ -149,8 +167,9 @@ export default function AreaList() {
               bg="#0B2E4E"
               padding="10px 20px"
               onClick={handleAddArea}
+              disabled={createLoading}
             >
-              Add Area
+              {createLoading ? 'Loading...' : 'Add Area'}
             </CustomButton>
           </div>
         </RegionInputField>

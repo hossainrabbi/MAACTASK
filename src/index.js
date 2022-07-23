@@ -4,6 +4,13 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
+import 'react-toastify/dist/ReactToastify.css';
+
+// const options = {
+//   autoClose: 2000,
+//   className: '',
+//   position: toast.POSITION.TOP_RIGHT,
+// };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

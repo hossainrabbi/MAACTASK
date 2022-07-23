@@ -2,15 +2,23 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const areaSlice = createSlice({
   name: 'area',
-  initialState: { loading: false, error: '', area: [] },
+  initialState: {
+    createLoading: false,
+    createError: '',
+    findLoading: false,
+    findError: '',
+    area: [],
+    isSubmit: false,
+  },
   reducers: {
     createArea(state, action) {
-      state.loading = action.payload.loading;
-      state.error = action.payload.error;
+      state.createLoading = action.payload.loading;
+      state.createError = action.payload.error;
+      state.isSubmit = action.payload.isSubmit;
     },
     findArea(state, action) {
-      state.loading = action.payload.loading;
-      state.error = action.payload.error;
+      state.findLoading = action.payload.loading;
+      state.findError = action.payload.error;
       state.area = action.payload.area;
     },
   },

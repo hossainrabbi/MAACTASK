@@ -25,6 +25,7 @@ export default function GeoNavbar() {
 
   const handleLogout = () => {
     handleCloseUserMenu();
+    localStorage.removeItem('authToken');
     dispatch(authAction.logoutUser());
   };
 

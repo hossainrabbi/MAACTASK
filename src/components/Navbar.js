@@ -32,6 +32,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     handleCloseUserMenu();
+    localStorage.removeItem('authToken');
     dispatch(authAction.logoutUser());
   };
 

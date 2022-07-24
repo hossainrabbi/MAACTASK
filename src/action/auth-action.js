@@ -14,7 +14,9 @@ export const registerUser = (registerData) => async (dispatch) => {
       registerData
     );
 
-    localStorage.setItem('authToken', JSON.stringify(data));
+    if (data) {
+      localStorage.setItem('authToken', JSON.stringify(data));
+    }
 
     dispatch(
       authAction.registerUser({
@@ -47,7 +49,9 @@ export const loginUser = (loginData) => async (dispatch) => {
       loginData
     );
 
-    localStorage.setItem('authToken', JSON.stringify(data));
+    if (data) {
+      localStorage.setItem('authToken', JSON.stringify(data));
+    }
 
     dispatch(
       authAction.loginUser({

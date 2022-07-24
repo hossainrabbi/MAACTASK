@@ -1,15 +1,18 @@
 import axios from 'axios';
 import { regionAction } from '../store/region-slice';
 
-const config = {
-  headers: {
-    Authorization: `Bearer ${
-      JSON.parse(localStorage.getItem('authToken'))?.token
-    }`,
-  },
-};
-
 export const createRegion = (regionData) => async (dispatch) => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${
+    JSON.parse(localStorage.getItem('authToken'))?.token
+  }`;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem('authToken'))?.token
+      }`,
+    },
+  };
   try {
     dispatch(
       regionAction.createRegion({
@@ -41,6 +44,17 @@ export const createRegion = (regionData) => async (dispatch) => {
 };
 
 export const findRegions = (showCount, searchRegion) => async (dispatch) => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${
+    JSON.parse(localStorage.getItem('authToken'))?.token
+  }`;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem('authToken'))?.token
+      }`,
+    },
+  };
   try {
     const { data } = await axios.get(
       `https://staging-api.erpxbd.com/api/v1/region/${showCount}/1?name=${searchRegion}`,

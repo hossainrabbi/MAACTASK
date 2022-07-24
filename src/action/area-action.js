@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { areaAction } from '../store/area-slice';
 
-const config = {
-  headers: {
-    Authorization: `Bearer ${
-      JSON.parse(localStorage.getItem('authToken'))?.token
-    }`,
-  },
-};
-
 export const createArea = (areaData) => async (dispatch) => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${
+    JSON.parse(localStorage.getItem('authToken'))?.token
+  }`;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem('authToken'))?.token
+      }`,
+    },
+  };
+
   try {
     dispatch(
       areaAction.createArea({
@@ -41,6 +45,18 @@ export const createArea = (areaData) => async (dispatch) => {
 };
 
 export const findArea = (countArea, searchArea) => async (dispatch) => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${
+    JSON.parse(localStorage.getItem('authToken'))?.token
+  }`;
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem('authToken'))?.token
+      }`,
+    },
+  };
+
   try {
     const { data } = await axios.get(
       `https://staging-api.erpxbd.com/api/v1/area/All/${countArea}/1?name=${searchArea}`,
